@@ -277,6 +277,10 @@ body {
   border-radius: 0.5rem;
 }
 .slip h3 { font-family: var(--font-sc); font-weight: 400; color: var(--rubric); letter-spacing: 0.12em; font-size: 1rem; margin: 0 0 0.5rem; }
+.tomo { display: grid; grid-template-columns: 1.2rem 1fr; gap: 0.6rem; align-items: start; padding-bottom: 0.65rem; margin-bottom: 0.7rem; border-bottom: 1px solid var(--rule); }
+.tomo svg { width: 1.2rem; height: 1.2rem; color: var(--rubric); margin-top: 0.12rem; }
+.tomo b { display: block; font-weight: 500; line-height: 1.25; }
+.tomo span { display: block; color: var(--ink-soft); font-size: 1rem; line-height: 1.3; }
 .marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
 .marks li { display: grid; grid-template-columns: 10px 1fr; gap: 0.7rem; align-items: start; }
 .marks .tape { width: 10px; height: 1.6rem; margin-top: 0.1rem; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
@@ -390,6 +394,9 @@ body {
 .p-note { font-style: italic; color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); margin-block: calc(var(--u) * 6 * var(--k)) !important; }
 .p-pre { font-style: italic; color: var(--sheet-rubric); font-size: calc(var(--u) * 10.5 * var(--k)); margin-block: calc(var(--u) * 6 * var(--k)) !important; }
 .p-slip { background: var(--sheet-slip); border: 1px solid var(--sheet-rule); border-radius: calc(var(--u) * 4 * var(--k)); padding: calc(var(--u) * 8 * var(--k)) calc(var(--u) * 10 * var(--k)); margin-bottom: calc(var(--u) * 8 * var(--k)); }
+.p-tomo { color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); padding-bottom: calc(var(--u) * 5 * var(--k)); margin-bottom: calc(var(--u) * 6 * var(--k)) !important; border-bottom: 1px solid var(--sheet-rule); }
+.p-tomo b { font-weight: 500; color: var(--sheet-ink); font-size: calc(var(--u) * 11 * var(--k)); }
+.p-tomo .p-slipt { display: inline; }
 .p-slipt { font-family: var(--font-sc); color: var(--sheet-rubric); letter-spacing: calc(var(--u) * 1 * var(--k)); font-size: calc(var(--u) * 10.5 * var(--k)); margin-bottom: calc(var(--u) * 4 * var(--k)) !important; }
 .p-mark { display: flex; align-items: baseline; gap: calc(var(--u) * 6 * var(--k)); color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); margin-top: calc(var(--u) * 3 * var(--k)) !important; }
 .p-mark b { font-weight: 500; color: var(--sheet-ink); font-size: calc(var(--u) * 11 * var(--k)); }
@@ -943,6 +950,13 @@ body {
     3: { title: 'del miércoles', ps: ['Sal 30, 2-6', 'Sal 129'] }, 4: { title: 'del jueves', ps: ['Sal 15'] },
     5: { title: 'del viernes', ps: ['Sal 87'] }, 6: { title: 'del sábado', ps: ['Sal 4', 'Sal 133'] }
   };
+  // Tomos de la edición española de la Liturgia de las Horas
+  var TOMOS = {
+    1: { name: 'Tomo I', desc: 'Adviento y Navidad' },
+    2: { name: 'Tomo II', desc: 'Cuaresma, Triduo pascual y Pascua' },
+    3: { name: 'Tomo III', desc: 'Tiempo Ordinario, semanas I a XVII' },
+    4: { name: 'Tomo IV', desc: 'Tiempo Ordinario, semanas XVIII a XXXIV' }
+  };
   var O_ANT = { 17: '«Oh Sabiduría»', 18: '«Oh Adonai»', 19: '«Oh Renuevo del tronco de Jesé»', 20: '«Oh Llave de David»', 21: '«Oh Sol que nace de lo alto»', 22: '«Oh Rey de las naciones»', 23: '«Oh Emmanuel»' };
 
   function create(Cal, Lit, santoral, commons) {
@@ -961,6 +975,16 @@ body {
         default: return ((t.week - 1) % 4) + 1;
       }
     }
+
+    // Tomo según el tiempo litúrgico (el Propio de los santos de cada tomo trae los santos de esas fechas)
+    function tomoOf(d) {
+      switch (d.season) {
+        case 'adviento': case 'navidad': return 1;
+        case 'cuaresma': case 'semanasanta': case 'triduo': case 'pascua': return 2;
+        default: return d.temporal.week <= 17 ? 3 : 4;
+      }
+    }
+    function tomoInfo(t) { return { n: t, name: TOMOS[t].name, desc: TOMOS[t].desc }; }
 
     function lc(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
     function ptLabel(d) {
@@ -1192,7 +1216,11 @@ body {
     // ---------- Vísperas ----------
     function visperas(n, choice) {
       var d = dayOf(n), e = dayOf(n + 1);
-      if (firstVespersWin(d, e, choice)) return firstVespers(e, d);
+      if (firstVespersWin(d, e, choice)) {
+        var fv = firstVespers(e, d), t0 = tomoOf(d), t1 = tomoOf(e);
+        if (t0 !== t1) fv.notes.unshift('Esta tarde cambias de tomo: estas Vísperas ya están en el ' + TOMOS[t1].name + ' (' + TOMOS[t1].desc + '), no en el ' + TOMOS[t0].name + ' de esta mañana.');
+        return fv;
+      }
       var sk = kindOf(d, choice), w = psalterWeek(d), dow = d.dow;
       var P = { hour: 'visperas', marks: [], notes: [], psalterWeek: w };
       if (d.season === 'navidad' && d.date[1] === 12 && d.date[2] >= 26 && d.date[2] <= 28 && sk.type === 'sfeast') sk = { type: 'octnav', feastDay: true };
@@ -1341,8 +1369,10 @@ body {
     // ---------- Completas ----------
     function completas(n, choice, now) {
       var d = dayOf(n), e = dayOf(n + 1), k = d.temporal.key;
-      var which, notes = [];
-      if (firstVespersWin(d, e, choice)) which = 'domI';
+      var which, notes = [], fvw = firstVespersWin(d, e, choice);
+      var tc = fvw ? tomoOf(e) : tomoOf(d);
+      if (tc !== tomoOf(d)) notes.push('Estas Completas, como las Vísperas de esta tarde, ya se rezan con el ' + TOMOS[tc].name + '.');
+      if (fvw) which = 'domI';
       else if (k === 'JUEVES' || k === 'VIERNES' || k === 'VIGILIA') which = 'domII';
       else if (inOctave(d)) { which = 'domII'; notes.push('Durante la octava se rezan las Completas del domingo, después de las I o de las II Vísperas, a elección.'); }
       else if (d.dow === 0 || (d.principal.kind === 'sanctoral' && d.principal.rank <= 4 && d.principal.id !== 'commemoration_of_all_the_faithful_departed') ||
@@ -1367,7 +1397,7 @@ body {
         { part: 'Antífona de la Virgen', text: easter ? '«Reina del cielo, alégrate, aleluya».' : 'La Salve u otra de las antífonas marianas del libro.' }
       ];
       return {
-        hour: 'completas', office: 'Completas ' + c.title, notes: notes, steps: steps,
+        hour: 'completas', office: 'Completas ' + c.title, notes: notes, steps: steps, tomo: tomoInfo(tc),
         marks: [{ book: 'Completas', place: c.title.replace(/^del /, '') }]
       };
     }
@@ -1397,7 +1427,7 @@ body {
       steps.push({ part: 'Conclusión', text: 'Si no preside un sacerdote o diácono: «El Señor nos bendiga, nos guarde de todo mal y nos lleve a la vida eterna. — Amén.»' });
       var pre = null;
       if (P.hour === 'laudes') pre = 'Si es tu primera oración del día, empieza con el Invitatorio (en el Ordinario): «Señor, ábreme los labios. — Y mi boca proclamará tu alabanza», y el salmo 94 con su antífona (' + lcFirst(P.invit || P.himno) + '). Después pasa directamente al himno.';
-      return { hour: P.hour, office: P.office, psalterWeek: P.psalterWeek, marks: P.marks, notes: P.notes, rule: P.rule || null, steps: steps, pre: pre, first: !!P.first };
+      return { hour: P.hour, office: P.office, psalterWeek: P.psalterWeek, tomo: tomoInfo(tomoOf(d)), marks: P.marks, notes: P.notes, rule: P.rule || null, steps: steps, pre: pre, first: !!P.first };
     }
     function lcFirst(t) { return /^(Propio|Salterio|Común|Oficio)/.test(t) ? t : t; }
 
@@ -1418,13 +1448,14 @@ body {
     return {
       forDay: function (n, choice, nowHour) {
         var d = dayOf(n);
-        return { psalterWeek: psalterWeek(d), options: options(d), laudes: laudes(d, choice), visperas: visperas(n, choice), completas: completas(n, choice, nowHour) };
+        return { psalterWeek: psalterWeek(d), tomo: tomoInfo(tomoOf(d)), options: options(d), laudes: laudes(d, choice), visperas: visperas(n, choice), completas: completas(n, choice, nowHour) };
       },
-      psalterWeek: function (n) { return psalterWeek(dayOf(n)); }
+      psalterWeek: function (n) { return psalterWeek(dayOf(n)); },
+      tomo: function (n) { return tomoInfo(tomoOf(dayOf(n))); }
     };
   }
 
-  var api = { create: create, PS: PS };
+  var api = { create: create, PS: PS, TOMOS: TOMOS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Horas = api;
 })(this);
 </script>
@@ -1652,12 +1683,19 @@ window.COMMONS={"basil_the_great_and_gregory_nazianzen_bishops":["Bishops","Doct
     var title = this.lines([Object.assign({ text: b.title || 'Prepara las cintas' }, T.slipT)], this.w - 2 * padX);
     var rows = b.items.map(function (m) { return self.lines([Object.assign({ text: m.book }, T.book), Object.assign({ text: '  ' + m.place }, T.place)], innerW); });
     var rowsH = rows.reduce(function (a, r) { return a + self.height(r, 1.3) + 4 * k; }, 0);
-    var h = padY * 2 + this.height(title, 1.3) + 4 * k + rowsH;
+    var tomo = b.tomo ? this.lines([Object.assign({ text: 'Libro  ' }, T.slipT), Object.assign({ text: b.tomo.name }, T.book), Object.assign({ text: '  ' + b.tomo.desc }, T.place)], this.w - 2 * padX) : [];
+    var tomoH = tomo.length ? this.height(tomo, 1.3) + 9 * k : 0;
+    var h = padY * 2 + this.height(title, 1.3) + 4 * k + rowsH + tomoH;
     this.ensure(h);
     var doc = this.doc, y0 = this.y;
     doc.setFillColor.apply(doc, C.slip); doc.setDrawColor.apply(doc, C.rule); doc.setLineWidth(0.6 * k);
     doc.roundedRect(this.x, y0, this.w, h - 4 * k, 4 * k, 4 * k, 'FD');
     this.y = y0 + padY;
+    if (tomo.length) {
+      this.drawLines(tomo, this.x + padX, this.w - 2 * padX, 1.3);
+      this.gap(4); doc.setDrawColor.apply(doc, C.rule); doc.setLineWidth(0.5 * k);
+      doc.line(this.x + padX, this.y, this.x + this.w - padX, this.y); this.gap(5);
+    }
     this.drawLines(title, this.x + padX, this.w - 2 * padX, 1.3);
     this.gap(4);
     rows.forEach(function (r, i) {
@@ -1797,7 +1835,9 @@ window.COMMONS={"basil_the_great_and_gregory_nazianzen_bishops":["Bishops","Doct
         d.appendChild(el('p', 'p-cite', b.cite));
         if (b.alts && b.alts.length) { var a = el('p', 'p-alt'); a.appendChild(el('b', '', 'o bien ')); a.appendChild(document.createTextNode(b.alts.join(' · '))); d.appendChild(a); }
       } else if (b.t === 'marks') {
-        d = el('div', 'p-slip'); d.appendChild(el('p', 'p-slipt', b.title || 'Prepara las cintas'));
+        d = el('div', 'p-slip');
+        if (b.tomo) { var tp = el('p', 'p-tomo'); tp.appendChild(el('span', 'p-slipt', 'Libro ')); tp.appendChild(el('b', '', b.tomo.name)); tp.appendChild(document.createTextNode('  ' + b.tomo.desc)); d.appendChild(tp); }
+        d.appendChild(el('p', 'p-slipt', b.title || 'Prepara las cintas'));
         b.items.forEach(function (it, i) { var r = el('p', 'p-mark'); r.appendChild(el('i', 'p-tape t' + (i % 5))); r.appendChild(el('b', '', it.book)); r.appendChild(document.createTextNode('  ' + it.place)); d.appendChild(r); });
       } else if (b.t === 'rule') {
         d = el('p', 'p-rule'); d.appendChild(el('b', '', (b.label || 'Regla de hoy') + '. ')); d.appendChild(document.createTextNode(b.text));
@@ -1961,7 +2001,7 @@ window.COMMONS={"basil_the_great_and_gregory_nazianzen_bishops":["Bishops","Doct
     if (d.rankName) meta.appendChild(el('span', 'rank', d.rankName));
     var col = el('span', 'color'); var dot = el('i'); colorize(dot, p.color); col.appendChild(dot);
     col.appendChild(document.createTextNode('Color ' + p.color)); meta.appendChild(col);
-    var cyc = state.tab === 'horas' ? 'Salterio: semana ' + ROM[Hor.psalterWeek(state.n)] : 'Ciclo ' + d.sunCycle + ' · ' + CYCLE_TXT[d.wkCycle];
+    var cyc = state.tab === 'horas' ? 'Salterio: semana ' + ROM[Hor.psalterWeek(state.n)] + ' · ' + Hor.tomo(state.n).name : 'Ciclo ' + d.sunCycle + ' · ' + CYCLE_TXT[d.wkCycle];
     meta.appendChild(el('span', 'cycle', cyc));
     main.appendChild(meta);
     if (p.kind !== 'temporal') main.appendChild(el('p', 'temporal', d.temporal.name + (d.temporal.sub ? ' · ' + d.temporal.sub : '')));
@@ -2098,6 +2138,12 @@ window.COMMONS={"basil_the_great_and_gregory_nazianzen_bishops":["Bishops","Doct
     sec.appendChild(el('p', 'office', X.office));
 
     var slip = el('div', 'slip');
+    if (X.tomo) {
+      var tm = el('div', 'tomo');
+      tm.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 4.5h6a2 2 0 0 1 2 2v13a1.6 1.6 0 0 0-1.6-1.6H4.5z"/><path d="M19.5 4.5h-5a2 2 0 0 0-2 2v13a1.6 1.6 0 0 1 1.6-1.6h5.4z"/></svg>');
+      var tt = el('div'); tt.appendChild(el('b', '', 'Coge el ' + X.tomo.name)); tt.appendChild(el('span', '', X.tomo.desc));
+      tm.appendChild(tt); slip.appendChild(tm);
+    }
     slip.appendChild(el('h3', '', 'Prepara las cintas'));
     var ul = el('ul', 'marks');
     X.marks.forEach(function (m, i) {
@@ -2147,7 +2193,8 @@ window.COMMONS={"basil_the_great_and_gregory_nazianzen_bishops":["Bishops","Doct
     var f = document.getElementById('closing');
     f.textContent = '';
     f.appendChild(el('p', '', 'Instrucciones para rezar con el libro de la Liturgia de las Horas, en cuatro volúmenes o en un diurnal con Laudes, Vísperas y Completas. Siguen la Ordenación general de la Liturgia de las Horas y el calendario litúrgico de España. Los salmos llevan la numeración de tu libro.'));
-    f.appendChild(el('p', '', 'En la edición de cuatro volúmenes, el Propio del tiempo va al principio; el Ordinario, el Salterio y las Completas, en el centro; y el Propio de los santos, los Comunes y el Oficio de difuntos, al final.'));
+    f.appendChild(el('p', '', 'Los cuatro tomos: el I, Adviento y Navidad; el II, Cuaresma, Triduo pascual y Pascua; el III, Tiempo Ordinario, semanas I a XVII; y el IV, semanas XVIII a XXXIV. Cada tomo trae su propio Salterio, Completas y los santos de esas fechas. Si rezas con un diurnal de un solo volumen, no hace falta cambiar de libro.'));
+    f.appendChild(el('p', '', 'Dentro de cada tomo, el Propio del tiempo va al principio; el Ordinario, el Salterio y las Completas, en el centro; y el Propio de los santos, los Comunes y el Oficio de difuntos, al final.'));
     f.appendChild(el('p', 'amen', 'Dios mío, ven en mi auxilio'));
   }
 
@@ -2199,13 +2246,13 @@ window.COMMONS={"basil_the_great_and_gregory_nazianzen_bishops":["Bishops","Doct
     var d = dayOf(P.n), H = Hor.forDay(P.n, P.choice, null), X = H[P.hour];
     var hn = HOURS.find(function (h) { return h.id === P.hour; }).name;
     var place = P.hour === 'completas' ? 'Cántico de Simeón y antífonas de la Virgen' : (P.hour === 'laudes' ? 'Invitatorio y Benedictus' : 'Magníficat');
-    var blocks = [{ t: 'marks', items: X.marks.concat([{ book: 'Ordinario', place: place }]) }];
+    var blocks = [{ t: 'marks', tomo: X.tomo, items: X.marks.concat([{ book: 'Ordinario', place: place }]) }];
     if (X.rule) blocks.push({ t: 'rule', text: X.rule });
     (X.notes || []).forEach(function (t) { blocks.push({ t: 'text', style: 'note', text: t }); });
     if (X.pre) blocks.push({ t: 'text', style: 'pre', text: X.pre });
     X.steps.forEach(function (s, i) { blocks.push({ t: 'step', n: i + 1, label: s.part, refs: s.refs || null, src: s.src || null, text: s.text || null, optional: !!s.optional }); });
     return { docTitle: hn + ' · ' + fmtDate(P.n), kicker: 'Liturgia de las Horas', date: fmtDate(P.n), title: hn, subtitle: X.office, metaRank: false,
-      meta: ['Salterio: semana ' + ROM[H.psalterWeek]], line: X.office.indexOf(d.principal.name) < 0 && X.office.indexOf(d.principal.name.replace(/^(La|El|Los|Las) /, '')) < 0 ? d.principal.name : null, blocks: blocks, footer: FOOT };
+      meta: (P.hour === 'completas' ? [] : ['Salterio: semana ' + ROM[X.psalterWeek || H.psalterWeek]]).concat([X.tomo.name + ' de la Liturgia de las Horas']), line: X.office.indexOf(d.principal.name) < 0 && X.office.indexOf(d.principal.name.replace(/^(La|El|Los|Las) /, '')) < 0 ? d.principal.name : null, blocks: blocks, footer: FOOT };
   }
   function specCustom() {
     var c = P.custom, B = Lec.BOOKS;
