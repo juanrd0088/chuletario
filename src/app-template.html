@@ -1,0 +1,1149 @@
+<title>Misal diario</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Lecturas de la Misa y Liturgia de las Horas de cada día según el calendario litúrgico de España">
+<!--@HEAD@-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap">
+<style>
+/* Composición: una página de misal de bolsillo, columna única centrada, cinta marcapáginas del color litúrgico del día */
+:root {
+  --paper: #f5eedd;
+  --paper-deep: #ece2c9;
+  --paper-edge: #e3d6b8;
+  --slip: #fbf6ea;
+  --ink: #2b2118;
+  --ink-soft: #6e5f4b;
+  --rubric: #a52a20;
+  --gilt: #a8843c;
+  --rule: rgba(43, 33, 24, 0.16);
+  --chip: #efe6d0;
+  --chip-on: #2b2118;
+  --chip-on-ink: #f5eedd;
+  --lit-verde: #4d7a46;
+  --lit-morado: #6a3d78;
+  --lit-blanco: #e7d9a8;
+  --lit-blanco-edge: #b99a52;
+  --lit-rojo: #b0302a;
+  --lit-rosa: #d58ea3;
+  --lit-negro: #3a3532;
+  --sheet: #ffffff;
+  --sheet-ink: #2b2118;
+  --sheet-soft: #6e5f4b;
+  --sheet-rubric: #a52a20;
+  --sheet-gilt: #a8843c;
+  --sheet-rule: #e2d9ca;
+  --sheet-slip: #faf6ee;
+  --font-display: "IM Fell English", "EB Garamond", Garamond, "Times New Roman", serif;
+  --font-sc: "IM Fell English SC", "EB Garamond", Garamond, serif;
+  --font-body: "EB Garamond", Garamond, "Iowan Old Style", "Times New Roman", serif;
+  --step--1: 0.875rem;
+  --step-0: 1.125rem;
+  --step-1: 1.375rem;
+  --step-2: 1.75rem;
+  --step-3: 2.25rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1c1712; --paper-deep: #241e17; --paper-edge: #2e261d; --slip: #241e17;
+    --ink: #ece2cd; --ink-soft: #b4a68e; --rubric: #e27a6c; --gilt: #c9a45c;
+    --rule: rgba(236, 226, 205, 0.16); --chip: #2a231b; --chip-on: #ece2cd; --chip-on-ink: #1c1712;
+    --lit-verde: #6e9d66; --lit-morado: #9a72a8; --lit-blanco: #e7d9a8; --lit-blanco-edge: #c9a45c;
+    --lit-rojo: #d4554b; --lit-rosa: #e3a2b5; --lit-negro: #8a827c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1c1712; --paper-deep: #241e17; --paper-edge: #2e261d; --slip: #241e17;
+  --ink: #ece2cd; --ink-soft: #b4a68e; --rubric: #e27a6c; --gilt: #c9a45c;
+  --rule: rgba(236, 226, 205, 0.16); --chip: #2a231b; --chip-on: #ece2cd; --chip-on-ink: #1c1712;
+  --lit-verde: #6e9d66; --lit-morado: #9a72a8; --lit-blanco: #e7d9a8; --lit-blanco-edge: #c9a45c;
+  --lit-rojo: #d4554b; --lit-rosa: #e3a2b5; --lit-negro: #8a827c;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  background-image:
+    radial-gradient(120% 70% at 50% 0%, transparent 55%, var(--paper-deep) 100%),
+    radial-gradient(90% 60% at 50% 100%, transparent 50%, var(--paper-edge) 130%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.page {
+  position: relative;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-block: 1.5rem 3rem;
+}
+
+/* Cinta marcapáginas */
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: max(22px, calc(env(safe-area-inset-right, 0px) + 10px));
+  width: 16px;
+  height: 92px;
+  background: var(--ribbon, var(--lit-verde));
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
+  transition: background-color 0.5s ease;
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.18), inset -2px 0 0 rgba(0, 0, 0, 0.12);
+}
+.ribbon.white { background: var(--lit-blanco); box-shadow: inset 0 0 0 1px var(--lit-blanco-edge); }
+
+/* Cabecera y pestañas */
+.masthead { text-align: center; padding-inline: 1.5rem; }
+.tabs { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 0.9rem; margin: 0; }
+.tab[data-tab="lecturas"] { justify-self: end; }
+.tab[data-tab="horas"] { justify-self: start; }
+@media (max-width: 370px) { .tab { font-size: 1rem; letter-spacing: 0.1em; } .tabs { gap: 0.7rem; } }
+.tab {
+  font-family: var(--font-sc);
+  font-size: var(--step-0);
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  background: none;
+  border: 0;
+  padding: 0.3rem 0.1rem 0.25rem;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+.tab[aria-selected="true"] { color: var(--rubric); border-bottom-color: var(--rubric); }
+.tabs .sep { color: var(--gilt); font-size: 0.85rem; }
+.fleuron { display: flex; align-items: center; gap: 0.75rem; color: var(--gilt); margin: 0.5rem auto 0; max-width: min(15rem, calc(100% - 6rem)); }
+.fleuron .orn { font-size: 0.9rem; line-height: 1; }
+.fleuron::before, .fleuron::after { content: ""; flex: 1; height: 0; border-top: 1px solid var(--gilt); border-bottom: 1px solid var(--gilt); padding-top: 2px; opacity: 0.75; }
+.sh { width: 1.7rem; height: 1.7rem; flex: 0 0 auto; display: block; }
+.sh-g { fill: var(--gilt); }
+.sh-h { fill: var(--lit-rojo); }
+.sh-t { fill: none; stroke: var(--gilt); stroke-width: 1.1; stroke-linecap: round; }
+
+/* Selector de días */
+.days {
+  margin: 1.5rem 0 0;
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding: 0.25rem 0.1rem 0.6rem;
+  scrollbar-width: thin;
+}
+.day {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  min-width: 3.6rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.55rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.6rem;
+  background: var(--chip);
+  color: var(--ink);
+  font-family: var(--font-body);
+  cursor: pointer;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.day .wd { font-size: 0.8rem; font-variant-caps: all-small-caps; letter-spacing: 0.08em; color: var(--ink-soft); }
+.day .num { font-size: 1.35rem; line-height: 1.1; font-weight: 500; }
+.day .bar { width: 1.4rem; height: 4px; border-radius: 2px; background: var(--c, var(--lit-verde)); }
+.day .bar.white { background: var(--lit-blanco); box-shadow: inset 0 0 0 1px var(--lit-blanco-edge); }
+.day[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); border-color: var(--chip-on); }
+.day[aria-pressed="true"] .wd { color: var(--chip-on-ink); opacity: 0.8; }
+.day:focus-visible, .other:focus-within, .pill:focus-visible, .tab:focus-visible, .opt:focus-visible, a:focus-visible { outline: 2px solid var(--rubric); outline-offset: 2px; }
+.other {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  min-width: 4.4rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px dashed var(--rule);
+  border-radius: 0.6rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+}
+.other input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+
+/* Día litúrgico */
+.today { margin-top: 1.6rem; }
+.date { font-style: italic; color: var(--ink-soft); margin: 0; }
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--step-3);
+  line-height: 1.12;
+  margin: 0.35rem 0 0;
+  text-wrap: balance;
+}
+.ini { color: var(--rubric); font-size: 1.32em; line-height: 0.8; }
+.sub { font-family: var(--font-display); font-style: italic; font-size: var(--step-1); color: var(--ink-soft); margin: 0.3rem 0 0; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; margin: 0.9rem 0 0; }
+.rank { font-family: var(--font-sc); color: var(--rubric); letter-spacing: 0.1em; font-size: 1.05rem; }
+.color { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--ink-soft); font-size: 1rem; }
+.color i { width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--c); display: inline-block; }
+.color i.white { background: var(--lit-blanco); box-shadow: inset 0 0 0 1px var(--lit-blanco-edge); }
+.cycle { color: var(--ink-soft); font-size: 1rem; font-variant-numeric: lining-nums; }
+.extra { margin: 0.6rem 0 0; color: var(--ink-soft); font-size: 1rem; }
+.extra b { font-weight: 400; font-variant-caps: all-small-caps; letter-spacing: 0.06em; color: var(--rubric); }
+.temporal { font-style: italic; color: var(--ink-soft); margin: 0.35rem 0 0; }
+
+.pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 0; }
+.pill {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.pill small { color: var(--ink-soft); font-style: italic; margin-left: 0.25rem; }
+.pill[aria-pressed="true"] { background: var(--chip-on); color: var(--chip-on-ink); border-color: var(--chip-on); }
+.pill[aria-pressed="true"] small { color: var(--chip-on-ink); opacity: 0.75; }
+.hours { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4rem; margin: 1.4rem 0 0; }
+.hours .pill { display: grid; justify-items: center; padding: 0.4rem 0.3rem; border-radius: 0.6rem; line-height: 1.2; }
+.hours .pill small { margin: 0; font-size: 0.8rem; }
+.note { margin: 1.1rem 0 0; font-style: italic; color: var(--ink-soft); font-size: 1rem; }
+
+/* Lecturas */
+.readings, .steps { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+.reading { padding: 1.2rem 0 1.25rem; border-top: 1px solid var(--rule); }
+.reading:first-child { border-top: 0; }
+.label { font-family: var(--font-sc); color: var(--rubric); letter-spacing: 0.12em; font-size: 1rem; margin: 0; }
+.rtitle { font-style: italic; margin: 0.2rem 0 0; color: var(--ink); }
+.rtitle .cross { color: var(--rubric); font-style: normal; margin-right: 0.3rem; }
+.cite {
+  display: block;
+  font-size: var(--step-2);
+  line-height: 1.2;
+  margin: 0.35rem 0 0;
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.resp { margin: 0.2rem 0 0; font-size: 1.05rem; color: var(--ink-soft); font-variant-numeric: lining-nums; }
+.resp .rsym { color: var(--rubric); font-size: 1.15em; }
+.read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  color: var(--rubric);
+  text-decoration: none;
+  font-size: 1rem;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.read svg { width: 0.85em; height: 0.85em; }
+.alts { margin: 0.7rem 0 0; font-size: 1rem; color: var(--ink-soft); }
+.alts a { color: inherit; }
+.alts em { font-variant-caps: all-small-caps; font-style: normal; letter-spacing: 0.06em; color: var(--rubric); }
+
+/* Horas */
+.choice { margin: 1.3rem 0 0; }
+.choice .label { margin-bottom: 0.45rem; }
+.opts { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.opt {
+  font: inherit; font-size: 0.95rem; text-align: left; line-height: 1.25;
+  padding: 0.35rem 0.75rem; border-radius: 0.6rem; border: 1px solid var(--rule);
+  background: transparent; color: var(--ink); cursor: pointer; max-width: 100%;
+}
+.opt[aria-pressed="true"] { border-color: var(--rubric); color: var(--rubric); box-shadow: inset 0 0 0 1px var(--rubric); }
+.hour { margin-top: 1.6rem; }
+.hname { font-family: var(--font-display); font-weight: 400; font-size: var(--step-3); line-height: 1.1; margin: 0; }
+.office { font-style: italic; color: var(--ink-soft); margin: 0.3rem 0 0; text-wrap: pretty; }
+.slip {
+  margin: 1.2rem 0 0;
+  padding: 0.85rem 1rem 0.9rem;
+  background: var(--slip);
+  border: 1px solid var(--rule);
+  border-radius: 0.5rem;
+}
+.slip h3 { font-family: var(--font-sc); font-weight: 400; color: var(--rubric); letter-spacing: 0.12em; font-size: 1rem; margin: 0 0 0.5rem; }
+.tomo { display: grid; grid-template-columns: 1.2rem 1fr; gap: 0.6rem; align-items: start; padding-bottom: 0.65rem; margin-bottom: 0.7rem; border-bottom: 1px solid var(--rule); }
+.tomo svg { width: 1.2rem; height: 1.2rem; color: var(--rubric); margin-top: 0.12rem; }
+.tomo b { display: block; font-weight: 500; line-height: 1.25; }
+.tomo span { display: block; color: var(--ink-soft); font-size: 1rem; line-height: 1.3; }
+.marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+.marks li { display: grid; grid-template-columns: 10px 1fr; gap: 0.7rem; align-items: start; }
+.marks .tape { width: 10px; height: 1.6rem; margin-top: 0.1rem; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
+.marks .t0 { background: var(--lit-rojo); }
+.marks .t1 { background: var(--lit-verde); }
+.marks .t2 { background: var(--gilt); }
+.marks .t3 { background: var(--lit-morado); }
+.marks .t4 { background: var(--lit-blanco); box-shadow: inset 0 0 0 1px var(--lit-blanco-edge); }
+.marks b { display: block; font-weight: 500; line-height: 1.25; }
+.marks span { display: block; color: var(--ink-soft); font-size: 1rem; line-height: 1.3; }
+.rule { margin: 1rem 0 0; font-size: 1rem; line-height: 1.45; padding-left: 0.85rem; border-left: 2px solid var(--rubric); }
+.rule b { font-weight: 400; font-variant-caps: all-small-caps; letter-spacing: 0.06em; color: var(--rubric); }
+.pre { margin: 1rem 0 0; font-size: 1rem; font-style: italic; color: var(--rubric); }
+.step { display: grid; grid-template-columns: 1.6rem 1fr; gap: 0 0.6rem; padding: 0.85rem 0; border-top: 1px solid var(--rule); }
+.step:first-child { border-top: 0; }
+.step .n { font-family: var(--font-display); color: var(--rubric); font-size: 1.1rem; line-height: 1.6; text-align: right; font-variant-numeric: lining-nums; }
+.step .body { min-width: 0; }
+.step .src { font-style: italic; }
+.step p { margin: 0.15rem 0 0; }
+.step.opt-step .label::after { content: " · si se desea"; font-family: var(--font-body); font-style: italic; letter-spacing: 0; color: var(--ink-soft); font-variant-caps: normal; }
+.refs { display: flex; flex-wrap: wrap; gap: 0.3rem 0.45rem; margin: 0.35rem 0 0.15rem; padding: 0; list-style: none; }
+.refs li { font-size: 1.1rem; font-weight: 500; padding: 0.05rem 0.55rem; border-radius: 0.4rem; background: var(--chip); font-variant-numeric: lining-nums; white-space: nowrap; }
+
+.closing { margin-top: 2rem; padding-top: 1.25rem; border-top: 3px double var(--gilt); }
+.closing p { margin: 0 0 0.75rem; font-size: 1rem; color: var(--ink-soft); }
+.closing a { color: var(--rubric); }
+.amen { text-align: center; font-family: var(--font-display); font-style: italic; color: var(--gilt); margin-top: 1.5rem !important; }
+
+
+/* Herramientas: imprimir y tema */
+.themebtn .sun { display: none; }
+.themebtn.is-dark .sun { display: inline; }
+.themebtn.is-dark .moon { display: none; }
+.tools { position: absolute; top: 0.95rem; left: max(14px, env(safe-area-inset-left, 0px)); display: grid; gap: 0.2rem; }
+.printbtn {
+  display: grid; justify-items: center; gap: 0.05rem; width: 2.9rem; padding: 0.2rem 0;
+  background: none; border: 0; color: var(--ink-soft); cursor: pointer; font-family: var(--font-sc); font-size: 0.72rem; letter-spacing: 0.08em;
+}
+.printbtn svg { width: 1.35rem; height: 1.35rem; }
+.themebtn svg { width: 1.2rem; height: 1.2rem; }
+.printbtn:hover, .printbtn:focus-visible { color: var(--rubric); }
+.printbtn:focus-visible, .pr-close:focus-visible, .pr-kind:focus-visible, .pr-field input:focus-visible, .pr-field select:focus-visible, .pr-btn:focus-visible { outline: 2px solid var(--rubric); outline-offset: 2px; }
+.printer {
+  position: fixed; inset: 0; z-index: 50; background: var(--paper); overflow-y: auto; overscroll-behavior: contain;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pr-page { max-width: 34rem; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-block: 1.2rem 7rem; }
+.pr-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.pr-close { font: inherit; font-size: 1.8rem; line-height: 1; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; }
+.pr-sec { margin-top: 1.5rem; }
+.pr-sec > .label { margin-bottom: 0.5rem; }
+.pr-kinds { display: grid; gap: 0.5rem; }
+.pr-kind { font: inherit; text-align: left; padding: 0.6rem 0.85rem; border-radius: 0.6rem; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; display: grid; gap: 0.1rem; }
+.pr-kind b { font-weight: 500; }
+.pr-kind span { color: var(--ink-soft); font-style: italic; font-size: 0.95rem; line-height: 1.3; }
+.pr-kind[aria-pressed="true"] { border-color: var(--rubric); box-shadow: inset 0 0 0 1px var(--rubric); }
+.pr-kind[aria-pressed="true"] b { color: var(--rubric); }
+.pr-field { display: grid; gap: 0.25rem; margin-top: 0.75rem; }
+.pr-field > span { font-size: 0.95rem; color: var(--ink-soft); }
+.pr-field input, .pr-field select {
+  font: inherit; font-size: 1.05rem; color: var(--ink); background: var(--slip); border: 1px solid var(--rule); border-radius: 0.45rem; padding: 0.45rem 0.6rem; width: 100%; min-width: 0;
+}
+.pr-readings { list-style: none; margin: 0.9rem 0 0; padding: 0; display: grid; gap: 0.6rem; counter-reset: rd; }
+.pr-reading { border: 1px solid var(--rule); border-radius: 0.6rem; padding: 0.6rem 0.7rem 0.7rem; background: var(--slip); }
+.pr-reading .pr-field { margin-top: 0.45rem; }
+.pr-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 0.5rem; }
+.pr-tools { display: flex; justify-content: flex-end; gap: 0.3rem; margin-top: 0.5rem; }
+.pr-btn { font: inherit; font-size: 0.95rem; padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; }
+.pr-btn[disabled] { opacity: 0.4; cursor: default; }
+.pr-add { margin-top: 0.7rem; color: var(--rubric); border-color: var(--rubric); }
+.pr-hint { margin: 0.6rem 0 0; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); }
+.pr-preview { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.pr-pages { margin: 0; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); }
+.pr-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 51; background: var(--paper); border-top: 1px solid var(--rule);
+  padding: 0.7rem max(20px, env(safe-area-inset-right, 0px)) calc(0.7rem + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px));
+}
+.pr-bar-in { max-width: 34rem; margin: 0 auto; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.pr-status { flex: 1 1 10rem; margin: 0; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); min-width: 0; }
+.pr-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.pr-go { font: inherit; font-size: 1.05rem; padding: 0.55rem 1.1rem; border-radius: 999px; border: 1px solid var(--chip-on); background: var(--chip-on); color: var(--chip-on-ink); cursor: pointer; }
+.pr-go[disabled] { opacity: 0.5; cursor: default; }
+.pr-share { font: inherit; font-size: 1.05rem; padding: 0.55rem 1rem; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; }
+
+/* Hoja de vista previa: papel blanco en los dos temas, medidas proporcionales al tamaño elegido */
+.sheet {
+  width: 100%; background: var(--sheet); color: var(--sheet-ink); border-radius: 2px; container-type: inline-size; overflow: hidden;
+  box-shadow: 0 1px 2px rgba(40, 25, 10, 0.12), 0 10px 28px rgba(40, 25, 10, 0.16);
+}
+.sheet.a4 { max-width: 30rem; } .sheet.a5 { max-width: 25rem; } .sheet.a6 { max-width: 20rem; }
+.sheet-in { padding: calc(var(--u) * var(--m) * 0.9) calc(var(--u) * var(--m)); font-family: var(--font-body); font-size: calc(var(--u) * 11 * var(--k)); line-height: 1.35; }
+.sheet p { margin: 0; }
+.p-kicker { font-family: var(--font-sc); color: var(--sheet-rubric); text-align: center; font-size: calc(var(--u) * 11 * var(--k)); letter-spacing: calc(var(--u) * 1.3 * var(--k)); }
+.p-fleuron { display: flex; align-items: center; gap: calc(var(--u) * 6 * var(--k)); color: var(--sheet-gilt); width: 64%; max-width: calc(var(--u) * 240 * var(--k)); margin: calc(var(--u) * 3 * var(--k)) auto calc(var(--u) * 12 * var(--k)); font-size: calc(var(--u) * 11 * var(--k)); line-height: 1; }
+.p-fleuron::before, .p-fleuron::after { content: ""; flex: 1; border-top: 1px solid var(--sheet-gilt); border-bottom: 1px solid var(--sheet-gilt); height: calc(var(--u) * 2 * var(--k)); }
+.p-date { font-style: italic; color: var(--sheet-soft); font-size: calc(var(--u) * 12 * var(--k)); }
+.p-title { font-family: var(--font-display); font-size: calc(var(--u) * 25 * var(--k)); line-height: 1.12; margin-top: calc(var(--u) * 2 * var(--k)) !important; }
+.p-title.p-empty { color: var(--sheet-soft); font-style: italic; }
+.p-ini { color: var(--sheet-rubric); font-size: 1.32em; line-height: 0.8; }
+.p-sub { font-style: italic; color: var(--sheet-soft); font-size: calc(var(--u) * 14 * var(--k)); margin-top: calc(var(--u) * 3 * var(--k)) !important; line-height: 1.25; }
+.p-meta { margin-top: calc(var(--u) * 7 * var(--k)) !important; color: var(--sheet-soft); }
+.p-rank { font-family: var(--font-sc); color: var(--sheet-rubric); letter-spacing: calc(var(--u) * 0.9 * var(--k)); }
+.p-line { font-style: italic; color: var(--sheet-soft); margin-top: calc(var(--u) * 2 * var(--k)) !important; }
+.p-extra { color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); margin-top: calc(var(--u) * 2 * var(--k)) !important; }
+.p-extra b, .p-alt b { font-weight: 400; font-family: var(--font-sc); color: var(--sheet-rubric); font-size: calc(var(--u) * 10 * var(--k)); letter-spacing: calc(var(--u) * 0.6 * var(--k)); }
+.sheet-in > :is(.p-reading, .p-slip, .p-step, .p-heading, .p-note, .p-pre, .p-rule):first-of-type, .p-extra + :is(.p-reading, .p-heading, .p-note), .p-line + :is(.p-reading, .p-slip, .p-heading, .p-note), .p-meta + :is(.p-reading, .p-slip, .p-heading, .p-note), .p-sub + :is(.p-reading, .p-heading), .p-title + :is(.p-reading, .p-heading) { margin-top: calc(var(--u) * 14 * var(--k)); }
+.p-reading { padding-top: calc(var(--u) * 10 * var(--k)); margin-top: calc(var(--u) * 6 * var(--k)); border-top: 1px solid var(--sheet-rule); }
+.p-reading.first { border-top: 0; padding-top: 0; }
+.p-label { font-family: var(--font-sc); color: var(--sheet-rubric); letter-spacing: calc(var(--u) * 1.1 * var(--k)); }
+.p-rtitle { font-style: italic; font-size: calc(var(--u) * 12 * var(--k)); }
+.p-cross { color: var(--sheet-rubric); font-style: normal; }
+.p-cite { font-weight: 500; font-size: calc(var(--u) * 18 * var(--k)); line-height: 1.2; margin-top: calc(var(--u) * 3 * var(--k)) !important; font-variant-numeric: lining-nums; }
+.p-resp { color: var(--sheet-soft); margin-top: calc(var(--u) * 2 * var(--k)) !important; }
+.p-resp.txt { color: var(--sheet-ink); font-style: italic; font-size: calc(var(--u) * 11.5 * var(--k)); }
+.p-rsym { color: var(--sheet-rubric); font-style: normal; }
+.p-fleuron .sh { width: calc(var(--u) * 19 * var(--k)); height: calc(var(--u) * 19 * var(--k)); }
+.p-fleuron .orn { font-size: calc(var(--u) * 11 * var(--k)); }
+.sheet .sh-g { fill: var(--sheet-gilt); } .sheet .sh-h { fill: var(--sheet-rubric); } .sheet .sh-t { stroke: var(--sheet-gilt); }
+.p-alt { color: var(--sheet-soft); margin-top: calc(var(--u) * 3 * var(--k)) !important; }
+.p-heading { font-family: var(--font-sc); letter-spacing: calc(var(--u) * 1 * var(--k)); font-size: calc(var(--u) * 11.5 * var(--k)); margin-bottom: calc(var(--u) * 4 * var(--k)) !important; }
+.p-note { font-style: italic; color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); margin-block: calc(var(--u) * 6 * var(--k)) !important; }
+.p-pre { font-style: italic; color: var(--sheet-rubric); font-size: calc(var(--u) * 10.5 * var(--k)); margin-block: calc(var(--u) * 6 * var(--k)) !important; }
+.p-slip { background: var(--sheet-slip); border: 1px solid var(--sheet-rule); border-radius: calc(var(--u) * 4 * var(--k)); padding: calc(var(--u) * 8 * var(--k)) calc(var(--u) * 10 * var(--k)); margin-bottom: calc(var(--u) * 8 * var(--k)); }
+.p-tomo { color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); padding-bottom: calc(var(--u) * 5 * var(--k)); margin-bottom: calc(var(--u) * 6 * var(--k)) !important; border-bottom: 1px solid var(--sheet-rule); }
+.p-tomo b { font-weight: 500; color: var(--sheet-ink); font-size: calc(var(--u) * 11 * var(--k)); }
+.p-tomo .p-slipt { display: inline; }
+.p-slipt { font-family: var(--font-sc); color: var(--sheet-rubric); letter-spacing: calc(var(--u) * 1 * var(--k)); font-size: calc(var(--u) * 10.5 * var(--k)); margin-bottom: calc(var(--u) * 4 * var(--k)) !important; }
+.p-mark { display: flex; align-items: baseline; gap: calc(var(--u) * 6 * var(--k)); color: var(--sheet-soft); font-size: calc(var(--u) * 10.5 * var(--k)); margin-top: calc(var(--u) * 3 * var(--k)) !important; }
+.p-mark b { font-weight: 500; color: var(--sheet-ink); font-size: calc(var(--u) * 11 * var(--k)); }
+.p-tape { flex: 0 0 auto; width: calc(var(--u) * 6 * var(--k)); height: calc(var(--u) * 12 * var(--k)); align-self: center; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%); }
+.p-tape.t0 { background: #b0302a; } .p-tape.t1 { background: #4d7a46; } .p-tape.t2 { background: #a8843c; } .p-tape.t3 { background: #6a3d78; } .p-tape.t4 { background: #e7d9a8; }
+.p-rule { border-left: calc(var(--u) * 1.6 * var(--k)) solid var(--sheet-rubric); padding-left: calc(var(--u) * 8 * var(--k)); font-size: calc(var(--u) * 10.5 * var(--k)); margin-block: calc(var(--u) * 4 * var(--k)) calc(var(--u) * 8 * var(--k)) !important; }
+.p-rule b { font-weight: 400; font-family: var(--font-sc); color: var(--sheet-rubric); }
+.p-step { display: grid; grid-template-columns: calc(var(--u) * 13 * var(--k)) 1fr; gap: calc(var(--u) * 7 * var(--k)); padding-top: calc(var(--u) * 8 * var(--k)); margin-top: calc(var(--u) * 5 * var(--k)); border-top: 1px solid var(--sheet-rule); }
+.p-step.first { border-top: 0; padding-top: 0; }
+.p-n { font-family: var(--font-display); color: var(--sheet-rubric); text-align: right; font-size: calc(var(--u) * 12 * var(--k)); }
+.p-sbody { min-width: 0; }
+.p-refs { font-weight: 500; font-size: calc(var(--u) * 12 * var(--k)); margin-top: calc(var(--u) * 2 * var(--k)) !important; }
+.p-foot { text-align: center; font-style: italic; color: var(--sheet-soft); font-size: calc(var(--u) * 8 * var(--k)); margin-top: calc(var(--u) * 26 * var(--k)) !important; }
+
+@media (min-width: 600px) {
+  .title { font-size: 2.6rem; }
+  .page { padding-block: 2.5rem 4rem; }
+}
+@media (prefers-reduced-motion: reduce) { .ribbon { transition: none; } }
+</style>
+<script>try{var __t=localStorage.getItem('misal.theme');if(__t==='dark'||__t==='light')document.documentElement.setAttribute('data-theme',__t)}catch(e){}</script>
+
+<div class="page">
+  <div class="ribbon" id="ribbon" aria-hidden="true"></div>
+  <div class="tools">
+  <button class="printbtn" id="printbtn" type="button" aria-label="Imprimir en PDF" title="Imprimir en PDF"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M6.5 9V3.5h11V9"/><path d="M6.5 17.5H4.2A1.2 1.2 0 0 1 3 16.3v-6.1A1.2 1.2 0 0 1 4.2 9h15.6A1.2 1.2 0 0 1 21 10.2v6.1a1.2 1.2 0 0 1-1.2 1.2h-2.3"/><path d="M6.5 14h11v6.5h-11z"/><circle cx="17.6" cy="11.6" r="0.6" fill="currentColor" stroke="none"/></svg><span>PDF</span></button>
+  <button class="printbtn themebtn" id="themebtn" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="moon" d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.3 6.3 0 0 0 10.1 10.1z"/><g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.2M12 19v2.2M2.8 12h2.2M19 12h2.2M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M5.5 18.5l1.6-1.6M16.9 7.1l1.6-1.6"/></g></svg><span id="themelbl">Oscuro</span></button>
+  </div>
+  <header class="masthead">
+    <div class="tabs" role="tablist" aria-label="Sección">
+      <button class="tab" id="tab-lecturas" role="tab" type="button" aria-controls="panel" data-tab="lecturas">Lecturas</button>
+      <span class="sep" aria-hidden="true">✠</span>
+      <button class="tab" id="tab-horas" role="tab" type="button" aria-controls="panel" data-tab="horas">Horas</button>
+    </div>
+    <div class="fleuron" aria-hidden="true"><span class="orn">❦</span></div>
+    <template id="orn-corazon"><svg class="sh" viewBox="0 0 24 24" aria-hidden="true"><path class="sh-g" d="M11.35 0.3h1.3v4.5h-1.3z M10.1 1.5h3.8v1.2h-3.8z"/><path class="sh-g" d="M12 4.6c1.3 1.3 1.9 2.4 1.9 3.6 0 1.3-.9 2.2-1.9 2.2s-1.9-.9-1.9-2.2c0-1.2.6-2.3 1.9-3.6z M9.1 7c.75.75 1.1 1.4 1.1 2.1 0 .8-.5 1.4-1.1 1.4s-1.1-.6-1.1-1.4c0-.7.35-1.35 1.1-2.1z M14.9 7c.75.75 1.1 1.4 1.1 2.1 0 .8-.5 1.4-1.1 1.4s-1.1-.6-1.1-1.4c0-.7.35-1.35 1.1-2.1z"/><path class="sh-h" d="M12 22.6C8.6 19.7 5 16.6 5 12.9 5 10.5 6.7 8.7 8.9 8.7c1.4 0 2.5.8 3.1 1.9.6-1.1 1.7-1.9 3.1-1.9 2.2 0 3.9 1.8 3.9 4.2 0 3.7-3.6 6.8-7 9.7z"/><path class="sh-t" d="M5.6 14.2c2 .9 4.2 1.3 6.4 1.3s4.4-.4 6.4-1.3"/></svg></template>
+  </header>
+
+  <nav class="days" id="days" aria-label="Elegir día"></nav>
+
+  <main class="today" id="panel" role="tabpanel" aria-live="polite"></main>
+
+  <footer class="closing" id="closing"></footer>
+</div>
+
+<div class="printer" id="printer" role="dialog" aria-modal="true" aria-labelledby="pr-title" hidden>
+  <div class="pr-page">
+    <div class="pr-head">
+      <h2 class="hname" id="pr-title" tabindex="-1"><span class="ini">I</span>mprimir</h2>
+      <button class="pr-close" id="pr-close" type="button" aria-label="Cerrar">×</button>
+    </div>
+    <section class="pr-sec"><p class="label">Qué imprimir</p><div class="pr-kinds" id="pr-kinds" role="group" aria-label="Qué imprimir"></div></section>
+    <section class="pr-sec" id="pr-opts"></section>
+    <section class="pr-sec"><p class="label">Tamaño del papel</p><div class="hours" id="pr-sizes" role="group" aria-label="Tamaño del papel"></div></section>
+    <section class="pr-sec"><p class="label">Vista previa</p><div class="pr-preview"><div id="pr-sheet" style="width:100%;display:flex;justify-content:center"></div><p class="pr-pages" id="pr-pages"></p></div></section>
+  </div>
+  <div class="pr-bar"><div class="pr-bar-in">
+    <p class="pr-status" id="pr-status" role="status"></p>
+    <div class="pr-actions">
+      <button class="pr-share" id="pr-share" type="button" hidden>Compartir o imprimir</button>
+      <button class="pr-go" id="pr-go" type="button">Descargar PDF</button>
+    </div>
+  </div></div>
+</div>
+
+<script>/*@LITURGIA@*/</script>
+<script>/*@CORE@*/</script>
+<script>/*@HORAS@*/</script>
+<script>/*@DATA@*/</script>
+<script>/*@PDF@*/</script>
+<script type="application/json" id="pdf-fonts">/*@FONTS@*/</script>
+<script>
+(function () {
+  'use strict';
+  var Lit = window.Liturgia, Lec = window.Lecturas;
+  var SANT = window.SANTORAL.map(function (a) { return { id: a[0], m: a[1], d: a[2], rank: a[3], color: a[4], name: a[5] }; });
+  var Cal = Lit.create(SANT, Lit.CFG_ES);
+  var Hor = window.Horas.create(Cal, Lit, SANT, window.COMMONS);
+  var MESES = Lit.MESES, DIAS = Lit.DIAS;
+  var DIAS_C = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+  var COLOR_VAR = { verde: '--lit-verde', morado: '--lit-morado', blanco: '--lit-blanco', rojo: '--lit-rojo', rosa: '--lit-rosa', negro: '--lit-negro' };
+  var CYCLE_TXT = { I: 'año impar (I)', II: 'año par (II)' };
+  var ROM = ['', 'I', 'II', 'III', 'IV'];
+  var HOURS = [
+    { id: 'laudes', name: 'Laudes', when: 'mañana' },
+    { id: 'visperas', name: 'Vísperas', when: 'tarde' },
+    { id: 'completas', name: 'Completas', when: 'noche' }
+  ];
+
+  // ---- Fecha de hoy: se recalcula siempre, nunca se guarda en la dirección ----
+  function todayN() { var d = new Date(); return Lit.dn(d.getFullYear(), d.getMonth() + 1, d.getDate()); }
+  var T0, END;
+  function setToday() { T0 = todayN(); END = T0 + 7; while (Lit.dow(END) !== 0) END++; }
+  setToday();
+
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var state = { n: T0, tab: store('misal.tab') === 'horas' ? 'horas' : 'lecturas', mass: null, hour: null, hourAt: 0, choice: null };
+
+  // Limpia direcciones antiguas que llevaban la fecha (#2026-10-18) para que siempre se abra hoy
+  if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+
+  function ymdStr(n) { var a = Lit.ymd(n); return a[0] + '-' + String(a[1]).padStart(2, '0') + '-' + String(a[2]).padStart(2, '0'); }
+  function dayOf(n) { var a = Lit.ymd(n); return Cal.day(a[0], a[1], a[2]); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function colorize(node, color) {
+    if (color === 'blanco') node.classList.add('white');
+    else node.style.setProperty('--c', 'var(' + (COLOR_VAR[color] || '--lit-verde') + ')');
+  }
+  function autoHour() {
+    var h = new Date().getHours();
+    if (state.n !== T0) return 'laudes';
+    if (h >= 4 && h < 13) return 'laudes';
+    if (h >= 13 && h < 21) return 'visperas';
+    return 'completas';
+  }
+  function currentHour() {
+    if (state.hour && Date.now() - state.hourAt < 30 * 60 * 1000) return state.hour;
+    return autoHour();
+  }
+
+  // ---- Tema claro / oscuro (se recuerda en este navegador) ----
+  var rootEl = document.documentElement, mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function effTheme() { var t = rootEl.getAttribute('data-theme'); if (t === 'dark' || t === 'light') return t; return mq && mq.matches ? 'dark' : 'light'; }
+  function paintTheme() {
+    var dark = effTheme() === 'dark', b = document.getElementById('themebtn');
+    b.classList.toggle('is-dark', dark);
+    var lbl = dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    b.setAttribute('aria-label', lbl); b.title = lbl;
+    document.getElementById('themelbl').textContent = dark ? 'Claro' : 'Oscuro';
+    Array.prototype.forEach.call(document.querySelectorAll('meta[name="theme-color"]'), function (m) { m.setAttribute('content', dark ? '#1c1712' : '#f5eedd'); });
+  }
+  document.getElementById('themebtn').addEventListener('click', function () {
+    var next = effTheme() === 'dark' ? 'light' : 'dark';
+    rootEl.setAttribute('data-theme', next); store('misal.theme', next); paintTheme();
+  });
+  if (mq && mq.addEventListener) mq.addEventListener('change', paintTheme);
+  if (window.MutationObserver) new MutationObserver(paintTheme).observe(rootEl, { attributes: true, attributeFilter: ['data-theme'] });
+  paintTheme();
+
+  // ---- Pestañas ----
+  function renderTabs() {
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
+      b.setAttribute('aria-selected', b.dataset.tab === state.tab ? 'true' : 'false');
+      b.tabIndex = b.dataset.tab === state.tab ? 0 : -1;
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
+    b.addEventListener('click', function () {
+      state.tab = b.dataset.tab; store('misal.tab', state.tab);
+      renderTabs(); render();
+    });
+  });
+
+  // ---- Selector de días ----
+  function renderDays() {
+    var nav = document.getElementById('days');
+    nav.textContent = '';
+    for (var n = T0; n <= END; n++) {
+      var d = dayOf(n), a = Lit.ymd(n);
+      var b = el('button', 'day');
+      b.type = 'button';
+      b.id = 'day-' + ymdStr(n);
+      b.dataset.n = n;
+      b.setAttribute('aria-pressed', n === state.n ? 'true' : 'false');
+      var label = n === T0 ? 'hoy' : (n === T0 + 1 ? 'mañana' : DIAS_C[d.dow]);
+      b.setAttribute('aria-label', DIAS[d.dow] + ' ' + a[2] + ' de ' + MESES[a[1]] + ': ' + d.principal.name);
+      b.appendChild(el('span', 'wd', label));
+      b.appendChild(el('span', 'num', String(a[2])));
+      var bar = el('span', 'bar'); colorize(bar, d.principal.color); b.appendChild(bar);
+      b.addEventListener('click', function () { go(+this.dataset.n); });
+      nav.appendChild(b);
+    }
+    var other = el('label', 'other');
+    other.appendChild(el('span', '', 'Otra fecha'));
+    var inp = document.createElement('input');
+    inp.type = 'date'; inp.id = 'otra-fecha'; inp.setAttribute('aria-label', 'Elegir otra fecha');
+    inp.value = ymdStr(state.n);
+    inp.addEventListener('change', function () {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(inp.value);
+      if (m) go(Lit.dn(+m[1], +m[2], +m[3]));
+    });
+    other.appendChild(inp);
+    nav.appendChild(other);
+    var on = nav.querySelector('[aria-pressed="true"]');
+    if (on && on.scrollIntoView && state.n !== T0) { try { on.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
+  }
+
+  function go(n) {
+    state.n = n; state.mass = null; state.choice = null; state.hour = null;
+    renderDays(); render();
+  }
+
+  // Si la app vuelve del fondo otro día (o pasa la medianoche abierta), se coloca en el nuevo hoy
+  function checkDay() {
+    var t = todayN();
+    if (t === T0) { if (state.tab === 'horas' && !state.hour) render(); return; }
+    var wasToday = state.n === T0 || state.n < t;
+    setToday();
+    if (wasToday) { state.n = T0; state.mass = null; state.choice = null; state.hour = null; }
+    renderDays(); render();
+  }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') checkDay(); });
+  window.addEventListener('pageshow', checkDay);
+  window.addEventListener('focus', checkDay);
+  setInterval(function () { if (document.visibilityState !== 'hidden') checkDay(); }, 60000);
+
+  // ---- Cabecera del día (común a las dos pestañas) ----
+  function renderHeader(main, d, a) {
+    var p = d.principal;
+    var ribbon = document.getElementById('ribbon');
+    ribbon.classList.toggle('white', p.color === 'blanco');
+    ribbon.style.setProperty('--ribbon', 'var(' + (COLOR_VAR[p.color] || '--lit-verde') + ')');
+
+    main.appendChild(el('p', 'date', DIAS[d.dow] + ', ' + a[2] + ' de ' + MESES[a[1]] + ' de ' + a[0]));
+    var h = el('h1', 'title');
+    h.appendChild(el('span', 'ini', p.name.charAt(0))); h.appendChild(document.createTextNode(p.name.slice(1)));
+    main.appendChild(h);
+    if (p.sub) main.appendChild(el('p', 'sub', p.sub));
+
+    var meta = el('div', 'meta');
+    if (d.rankName) meta.appendChild(el('span', 'rank', d.rankName));
+    var col = el('span', 'color'); var dot = el('i'); colorize(dot, p.color); col.appendChild(dot);
+    col.appendChild(document.createTextNode('Color ' + p.color)); meta.appendChild(col);
+    var cyc = state.tab === 'horas' ? 'Salterio: semana ' + ROM[Hor.psalterWeek(state.n)] + ' · ' + Hor.tomo(state.n).name : 'Ciclo ' + d.sunCycle + ' · ' + CYCLE_TXT[d.wkCycle];
+    meta.appendChild(el('span', 'cycle', cyc));
+    main.appendChild(meta);
+    if (p.kind !== 'temporal') main.appendChild(el('p', 'temporal', d.temporal.name + (d.temporal.sub ? ' · ' + d.temporal.sub : '')));
+  }
+
+  function render() {
+    var d = dayOf(state.n), a = Lit.ymd(state.n);
+    var main = document.getElementById('panel');
+    main.setAttribute('aria-labelledby', 'tab-' + state.tab);
+    main.textContent = '';
+    renderHeader(main, d, a);
+    if (state.tab === 'horas') renderHoras(main, d, a); else renderLecturas(main, d, a);
+  }
+
+  // ---- Lecturas ----
+  function renderLecturas(main, d, a) {
+    function extra(label, list) {
+      if (!list || !list.length) return;
+      var e = el('p', 'extra'); e.appendChild(el('b', '', label + ' ')); e.appendChild(document.createTextNode(list.join('; ')));
+      main.appendChild(e);
+    }
+    extra('También memoria obligatoria:', d.alsoObligatory);
+    extra(d.optional.length > 1 ? 'Memorias libres:' : 'Memoria libre:', d.optional);
+    extra('Se puede hacer conmemoración de', d.commemorations);
+
+    var res = Lec.readingsFor(d, window.LECT_T, window.LECT_S);
+    var masses = res.masses;
+    if (!state.mass || !masses.some(function (m) { return m.id === state.mass; })) {
+      var pref = ['dia', 'cena', 'main'];
+      state.mass = (masses.find(function (m) { return pref.indexOf(m.id) >= 0; }) || masses[0] || {}).id;
+    }
+    if (masses.length > 1) {
+      var tabs = el('div', 'pills'); tabs.setAttribute('role', 'group'); tabs.setAttribute('aria-label', 'Misa');
+      masses.forEach(function (m) {
+        var b = el('button', 'pill', m.label);
+        b.type = 'button'; b.id = 'misa-' + m.id;
+        b.setAttribute('aria-pressed', m.id === state.mass ? 'true' : 'false');
+        b.addEventListener('click', function () { state.mass = m.id; render(); });
+        tabs.appendChild(b);
+      });
+      main.appendChild(tabs);
+    }
+    if (res.note) main.appendChild(el('p', 'note', res.note));
+
+    var current = masses.find(function (m) { return m.id === state.mass; });
+    var ol = el('ol', 'readings');
+    (current ? current.items : []).forEach(function (it) {
+      var li = el('li', 'reading');
+      li.appendChild(el('p', 'label', it.label));
+      if (it.title) {
+        var t = el('p', 'rtitle');
+        if (it.gospel) t.appendChild(el('span', 'cross', '✠'));
+        t.appendChild(document.createTextNode(it.title));
+        li.appendChild(t);
+      }
+      li.appendChild(el('span', 'cite', it.cite));
+      if (it.resp) {
+        var rp = el('p', 'resp'); rp.title = 'Respuesta (antífona) del salmo';
+        rp.appendChild(el('span', 'rsym', '℟')); rp.appendChild(document.createTextNode(' ' + it.resp));
+        li.appendChild(rp);
+      }
+      li.appendChild(readLink(it.link, 'Leer en la Biblia de la CEE'));
+      if (it.alts.length) {
+        var al = el('p', 'alts');
+        al.appendChild(el('em', '', 'o bien '));
+        it.alts.forEach(function (x, i) {
+          if (i) al.appendChild(document.createTextNode(' · '));
+          var aa = el('a', '', x.cite); aa.href = x.link; aa.target = '_blank'; aa.rel = 'noopener';
+          al.appendChild(aa);
+        });
+        li.appendChild(al);
+      }
+      ol.appendChild(li);
+    });
+    main.appendChild(ol);
+    closingLecturas(a);
+  }
+
+  function readLink(href, text) {
+    var l = el('a', 'read'); l.href = href; l.target = '_blank'; l.rel = 'noopener';
+    l.appendChild(document.createTextNode(text));
+    l.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    return l;
+  }
+
+  function closingLecturas(a) {
+    var f = document.getElementById('closing');
+    f.textContent = '';
+    var dd = String(a[2]).padStart(2, '0') + '-' + String(a[1]).padStart(2, '0') + '-' + a[0];
+    var p1 = el('p');
+    p1.appendChild(document.createTextNode('Para rezar con el texto del leccionario completo: '));
+    var l = el('a', '', 'lecturas del día en dominicos.org');
+    l.href = 'https://www.dominicos.org/predicacion/evangelio-del-dia/' + dd + '/'; l.target = '_blank'; l.rel = 'noopener';
+    p1.appendChild(l); p1.appendChild(document.createTextNode('.'));
+    f.appendChild(p1);
+    f.appendChild(el('p', '', 'Las citas siguen la ordenación de las lecturas de la Misa y el calendario litúrgico de España. Cada cita abre su capítulo en la Sagrada Biblia de la Conferencia Episcopal Española. Los salmos llevan la numeración del leccionario; ℟ indica el versículo del que se toma la respuesta.'));
+    f.appendChild(el('p', 'amen', 'Palabra de Dios'));
+  }
+
+  // ---- Liturgia de las Horas ----
+  function renderHoras(main, d, a) {
+    var now = state.n === T0 ? new Date().getHours() : null;
+    var H = Hor.forDay(state.n, state.choice, now);
+
+    if (H.options.length) {
+      var ch = el('div', 'choice');
+      ch.appendChild(el('p', 'label', 'Qué celebrar hoy'));
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'group'); opts.setAttribute('aria-label', 'Qué celebrar hoy');
+      H.options.forEach(function (o, i) {
+        var b = el('button', 'opt', o.label);
+        b.type = 'button'; b.id = 'celebrar-' + i;
+        b.setAttribute('aria-pressed', (state.choice || 'feria') === o.id ? 'true' : 'false');
+        b.addEventListener('click', function () { state.choice = o.id === 'feria' ? null : o.id; render(); });
+        opts.appendChild(b);
+      });
+      ch.appendChild(opts);
+      main.appendChild(ch);
+    }
+
+    var hourId = currentHour();
+    var pills = el('div', 'hours'); pills.setAttribute('role', 'group'); pills.setAttribute('aria-label', 'Hora');
+    HOURS.forEach(function (h) {
+      var b = el('button', 'pill');
+      b.type = 'button'; b.id = 'hora-' + h.id;
+      b.appendChild(document.createTextNode(h.name));
+      b.appendChild(el('small', '', h.when));
+      b.setAttribute('aria-pressed', h.id === hourId ? 'true' : 'false');
+      b.addEventListener('click', function () { state.hour = h.id; state.hourAt = Date.now(); render(); });
+      pills.appendChild(b);
+    });
+    main.appendChild(pills);
+
+    var X = H[hourId];
+    var sec = el('section', 'hour');
+    var nm = HOURS.find(function (h) { return h.id === hourId; }).name;
+    var h2 = el('h2', 'hname');
+    h2.appendChild(el('span', 'ini', nm.charAt(0))); h2.appendChild(document.createTextNode(nm.slice(1)));
+    sec.appendChild(h2);
+    sec.appendChild(el('p', 'office', X.office));
+
+    var slip = el('div', 'slip');
+    if (X.tomo) {
+      var tm = el('div', 'tomo');
+      tm.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 4.5h6a2 2 0 0 1 2 2v13a1.6 1.6 0 0 0-1.6-1.6H4.5z"/><path d="M19.5 4.5h-5a2 2 0 0 0-2 2v13a1.6 1.6 0 0 1 1.6-1.6h5.4z"/></svg>');
+      var tt = el('div'); tt.appendChild(el('b', '', 'Coge el ' + X.tomo.name)); tt.appendChild(el('span', '', X.tomo.desc));
+      tm.appendChild(tt); slip.appendChild(tm);
+    }
+    slip.appendChild(el('h3', '', 'Prepara las cintas'));
+    var ul = el('ul', 'marks');
+    X.marks.forEach(function (m, i) {
+      var li = el('li');
+      li.appendChild(el('i', 'tape t' + (i % 5)));
+      var t = el('div');
+      t.appendChild(el('b', '', m.book));
+      t.appendChild(el('span', '', m.place));
+      li.appendChild(t);
+      ul.appendChild(li);
+    });
+    var li0 = el('li'); li0.appendChild(el('i', 'tape t' + (X.marks.length % 5)));
+    var t0 = el('div'); t0.appendChild(el('b', '', 'Ordinario'));
+    t0.appendChild(el('span', '', hourId === 'completas' ? 'Cántico de Simeón y antífonas de la Virgen' : (hourId === 'laudes' ? 'Invitatorio y Benedictus' : 'Magníficat')));
+    li0.appendChild(t0); ul.appendChild(li0);
+    slip.appendChild(ul);
+    sec.appendChild(slip);
+
+    if (X.rule) { var r = el('p', 'rule'); r.appendChild(el('b', '', 'Regla de hoy. ')); r.appendChild(document.createTextNode(X.rule)); sec.appendChild(r); }
+    (X.notes || []).forEach(function (t) { sec.appendChild(el('p', 'note', t)); });
+    if (X.pre) sec.appendChild(el('p', 'pre', X.pre));
+
+    var ol = el('ol', 'steps');
+    X.steps.forEach(function (s, i) {
+      var li = el('li', 'step' + (s.optional ? ' opt-step' : ''));
+      li.appendChild(el('span', 'n', String(i + 1)));
+      var body = el('div', 'body');
+      body.appendChild(el('p', 'label', s.part));
+      if (s.refs && s.refs.length) {
+        var rl = el('ul', 'refs');
+        s.refs.forEach(function (x) { rl.appendChild(el('li', '', x)); });
+        body.appendChild(rl);
+      }
+      var p = el('p');
+      if (s.src) { p.appendChild(el('span', 'src', s.src + '.')); if (s.text) p.appendChild(document.createTextNode(' ')); }
+      if (s.text) p.appendChild(document.createTextNode(s.text));
+      body.appendChild(p);
+      li.appendChild(body);
+      ol.appendChild(li);
+    });
+    sec.appendChild(ol);
+    main.appendChild(sec);
+    closingHoras();
+  }
+
+  function closingHoras() {
+    var f = document.getElementById('closing');
+    f.textContent = '';
+    f.appendChild(el('p', '', 'Instrucciones para rezar con el libro de la Liturgia de las Horas, en cuatro volúmenes o en un diurnal con Laudes, Vísperas y Completas. Siguen la Ordenación general de la Liturgia de las Horas y el calendario litúrgico de España. Los salmos llevan la numeración de tu libro.'));
+    f.appendChild(el('p', '', 'Los cuatro tomos: el I, Adviento y Navidad; el II, Cuaresma, Triduo pascual y Pascua; el III, Tiempo Ordinario, semanas I a XVII; y el IV, semanas XVIII a XXXIV. Cada tomo trae su propio Salterio, Completas y los santos de esas fechas. Si rezas con un diurnal de un solo volumen, no hace falta cambiar de libro.'));
+    f.appendChild(el('p', '', 'Dentro de cada tomo, el Propio del tiempo va al principio; el Ordinario, el Salterio y las Completas, en el centro; y el Propio de los santos, los Comunes y el Oficio de difuntos, al final.'));
+    f.appendChild(el('p', 'amen', 'Dios mío, ven en mi auxilio'));
+  }
+
+  // ================= Imprimir en PDF =================
+  var BOOK_NAMES = {
+    GEN: 'Génesis', EXO: 'Éxodo', LEV: 'Levítico', NUM: 'Números', DEU: 'Deuteronomio', JOS: 'Josué', JDG: 'Jueces', RUT: 'Rut', '1SA': '1 Samuel', '2SA': '2 Samuel',
+    '1KI': '1 Reyes', '2KI': '2 Reyes', '1CH': '1 Crónicas', '2CH': '2 Crónicas', EZR: 'Esdras', NEH: 'Nehemías', TOB: 'Tobías', JDT: 'Judit', EST: 'Ester', '1MA': '1 Macabeos',
+    '2MA': '2 Macabeos', JOB: 'Job', PSA: 'Salmos', PRO: 'Proverbios', ECC: 'Eclesiastés', SNG: 'Cantar de los Cantares', WIS: 'Sabiduría', SIR: 'Eclesiástico', ISA: 'Isaías',
+    JER: 'Jeremías', LAM: 'Lamentaciones', BAR: 'Baruc', EZK: 'Ezequiel', DAN: 'Daniel', HOS: 'Oseas', JOL: 'Joel', AMO: 'Amós', OBA: 'Abdías', JON: 'Jonás', MIC: 'Miqueas',
+    NAM: 'Nahún', HAB: 'Habacuc', ZEP: 'Sofonías', HAG: 'Ageo', ZEC: 'Zacarías', MAL: 'Malaquías', MAT: 'Mateo', MRK: 'Marcos', LUK: 'Lucas', JHN: 'Juan',
+    ACT: 'Hechos de los Apóstoles', ROM: 'Romanos', '1CO': '1 Corintios', '2CO': '2 Corintios', GAL: 'Gálatas', EPH: 'Efesios', PHP: 'Filipenses', COL: 'Colosenses',
+    '1TH': '1 Tesalonicenses', '2TH': '2 Tesalonicenses', '1TI': '1 Timoteo', '2TI': '2 Timoteo', TIT: 'Tito', PHM: 'Filemón', HEB: 'Hebreos', JAS: 'Santiago',
+    '1PE': '1 Pedro', '2PE': '2 Pedro', '1JN': '1 Juan', '2JN': '2 Juan', '3JN': '3 Juan', JUD: 'Judas', REV: 'Apocalipsis'
+  };
+  var NT_START = 'MAT';
+  var R_TYPES = ['Primera lectura', 'Segunda lectura', 'Tercera lectura', 'Cuarta lectura', 'Quinta lectura', 'Sexta lectura', 'Séptima lectura', 'Salmo responsorial', 'Epístola', 'Evangelio', 'Lectura'];
+  var SIZES_UI = [{ id: 'a4', name: 'A4', when: 'folio' }, { id: 'a5', name: 'A5', when: 'medio folio' }, { id: 'a6', name: 'A6', when: 'cuarto de folio' }];
+  var FOOT = 'Misal diario · Calendario litúrgico de España';
+
+  function loadCustom() {
+    var c = null; try { c = JSON.parse(localStorage.getItem('misal.custom') || 'null'); } catch (e) {}
+    if (!c || !Array.isArray(c.readings)) c = { title: '', subtitle: '', readings: [{ type: 'Primera lectura', book: '', ref: '' }, { type: 'Salmo responsorial', book: 'PSA', ref: '' }, { type: 'Evangelio', book: 'MAT', ref: '' }] };
+    return c;
+  }
+  function saveCustom() { try { localStorage.setItem('misal.custom', JSON.stringify(P.custom)); } catch (e) {} }
+  var P = { open: false, kind: 'misa', size: 'a5', n: T0, mass: null, hour: 'laudes', choice: null, custom: loadCustom(), cache: null, timer: null, lib: null };
+  try { var sz = localStorage.getItem('misal.size'); if (sz && /^a[456]$/.test(sz)) P.size = sz; } catch (e) {}
+
+  function fmtDate(n) { var a = Lit.ymd(n), d = dayOf(n); return DIAS[d.dow] + ', ' + a[2] + ' de ' + MESES[a[1]] + ' de ' + a[0]; }
+
+  function specMisa() {
+    var d = dayOf(P.n), p = d.principal, res = Lec.readingsFor(d, window.LECT_T, window.LECT_S);
+    var m = res.masses.find(function (x) { return x.id === P.mass; }) || res.masses.find(function (x) { return ['dia', 'cena', 'main'].indexOf(x.id) >= 0; }) || res.masses[0];
+    var extras = [];
+    if (d.alsoObligatory && d.alsoObligatory.length) extras.push(['También memoria obligatoria:', d.alsoObligatory.join('; ')]);
+    if (d.optional.length) extras.push([d.optional.length > 1 ? 'Memorias libres:' : 'Memoria libre:', d.optional.join('; ')]);
+    if (d.commemorations.length) extras.push(['Conmemoración:', d.commemorations.join('; ')]);
+    var blocks = [];
+    if (res.masses.length > 1 && m && m.label) blocks.push({ t: 'heading', text: m.label });
+    if (res.note) blocks.push({ t: 'text', style: 'note', text: res.note });
+    (m ? m.items : []).forEach(function (it) { blocks.push({ t: 'reading', label: it.label, title: it.title, cite: it.cite, resp: it.resp, gospel: it.gospel, alts: it.alts.map(function (a) { return a.cite; }) }); });
+    var meta = [], rank = !!d.rankName;
+    if (rank) meta.push(d.rankName);
+    meta.push('Color ' + p.color, 'Ciclo ' + d.sunCycle + ' · ' + CYCLE_TXT[d.wkCycle]);
+    return { docTitle: 'Misa · ' + fmtDate(P.n), kicker: 'Misa del día', date: fmtDate(P.n), title: p.name, subtitle: p.sub, metaRank: rank, meta: meta,
+      line: p.kind !== 'temporal' ? d.temporal.name + (d.temporal.sub ? ' · ' + d.temporal.sub : '') : null, extras: extras, blocks: blocks, footer: FOOT };
+  }
+  function specHoras() {
+    var d = dayOf(P.n), H = Hor.forDay(P.n, P.choice, null), X = H[P.hour];
+    var hn = HOURS.find(function (h) { return h.id === P.hour; }).name;
+    var place = P.hour === 'completas' ? 'Cántico de Simeón y antífonas de la Virgen' : (P.hour === 'laudes' ? 'Invitatorio y Benedictus' : 'Magníficat');
+    var blocks = [{ t: 'marks', tomo: X.tomo, items: X.marks.concat([{ book: 'Ordinario', place: place }]) }];
+    if (X.rule) blocks.push({ t: 'rule', text: X.rule });
+    (X.notes || []).forEach(function (t) { blocks.push({ t: 'text', style: 'note', text: t }); });
+    if (X.pre) blocks.push({ t: 'text', style: 'pre', text: X.pre });
+    X.steps.forEach(function (s, i) { blocks.push({ t: 'step', n: i + 1, label: s.part, refs: s.refs || null, src: s.src || null, text: s.text || null, optional: !!s.optional }); });
+    return { docTitle: hn + ' · ' + fmtDate(P.n), kicker: 'Liturgia de las Horas', date: fmtDate(P.n), title: hn, subtitle: X.office, metaRank: false,
+      meta: (P.hour === 'completas' ? [] : ['Salterio: semana ' + ROM[X.psalterWeek || H.psalterWeek]]).concat([X.tomo.name + ' de la Liturgia de las Horas']), line: X.office.indexOf(d.principal.name) < 0 && X.office.indexOf(d.principal.name.replace(/^(La|El|Los|Las) /, '')) < 0 ? d.principal.name : null, blocks: blocks, footer: FOOT };
+  }
+  function specCustom() {
+    var c = P.custom, B = Lec.BOOKS;
+    var blocks = c.readings.filter(function (r) { return r.book || (r.ref && r.ref.trim()); }).map(function (r) {
+      var b = B[r.book];
+      return { t: 'reading', label: r.type, title: b && r.type !== 'Salmo responsorial' ? b[1] : '', cite: ((b ? b[0] + ' ' : '') + (r.ref || '').trim()).trim(),
+        resp: r.type === 'Salmo responsorial' && r.resp && r.resp.trim() ? r.resp.trim() : null, respText: true, gospel: r.type === 'Evangelio' };
+    });
+    return { docTitle: c.title || 'Celebración', kicker: null, title: (c.title || '').trim(), subtitle: (c.subtitle || '').trim() || null, blocks: blocks, footer: 'Misal diario' };
+  }
+  function currentSpec() { return P.kind === 'misa' ? specMisa() : P.kind === 'horas' ? specHoras() : specCustom(); }
+  function fileName() {
+    var dstr = ymdStr(P.n);
+    if (P.kind === 'misa') return 'misa-' + dstr + '-' + P.size + '.pdf';
+    if (P.kind === 'horas') return P.hour + '-' + dstr + '-' + P.size + '.pdf';
+    var slug = (P.custom.title || 'celebracion').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50) || 'celebracion';
+    return slug + '-' + P.size + '.pdf';
+  }
+  function ready() { return P.kind !== 'custom' || (P.custom.title || '').trim().length > 0; }
+
+  var $pr = document.getElementById('printer');
+  function status(t) { document.getElementById('pr-status').textContent = t || ''; }
+
+  function openPrinter() {
+    P.open = true; P.n = state.n; P.mass = state.mass; P.choice = state.choice; P.hour = currentHour();
+    P.kind = state.tab === 'horas' ? 'horas' : 'misa';
+    $pr.hidden = false; document.body.style.overflow = 'hidden';
+    renderPrinter();
+    document.getElementById('pr-title').focus();
+    status('Preparando…');
+    MisalPDF.load().then(function () { P.lib = true; status(''); schedule(); })
+      .catch(function () { P.lib = false; status('Para crear el PDF hace falta conexión a internet la primera vez.'); });
+  }
+  function closePrinter() {
+    P.open = false; $pr.hidden = true; document.body.style.overflow = '';
+    document.getElementById('printbtn').focus();
+  }
+  document.getElementById('printbtn').addEventListener('click', openPrinter);
+  document.getElementById('pr-close').addEventListener('click', closePrinter);
+  document.addEventListener('keydown', function (e) { if (P.open && e.key === 'Escape') closePrinter(); });
+
+  function renderPrinter() {
+    // Qué imprimir
+    var kinds = document.getElementById('pr-kinds'); kinds.textContent = '';
+    var d = dayOf(P.n);
+    [
+      { id: 'misa', name: 'Misa del día', sub: 'Lecturas de la Misa del día que elijas' },
+      { id: 'custom', name: 'Celebración propia', sub: 'Tu título, subtítulo y las lecturas que quieras' },
+      { id: 'horas', name: 'Liturgia de las Horas', sub: 'Instrucciones de Laudes, Vísperas o Completas' }
+    ].forEach(function (k) {
+      var b = el('button', 'pr-kind'); b.type = 'button'; b.id = 'pr-kind-' + k.id;
+      b.setAttribute('aria-pressed', P.kind === k.id ? 'true' : 'false');
+      b.appendChild(el('b', '', k.name)); b.appendChild(el('span', '', k.sub));
+      b.addEventListener('click', function () { P.kind = k.id; renderPrinter(); });
+      kinds.appendChild(b);
+    });
+    renderOptions();
+    // Tamaño
+    var sizes = document.getElementById('pr-sizes'); sizes.textContent = '';
+    SIZES_UI.forEach(function (s) {
+      var b = el('button', 'pill'); b.type = 'button'; b.id = 'pr-size-' + s.id;
+      b.appendChild(document.createTextNode(s.name)); b.appendChild(el('small', '', s.when));
+      b.setAttribute('aria-pressed', P.size === s.id ? 'true' : 'false');
+      b.addEventListener('click', function () { P.size = s.id; try { localStorage.setItem('misal.size', s.id); } catch (e) {} renderPrinter(); });
+      sizes.appendChild(b);
+    });
+    updatePreview();
+  }
+
+  function dateField(host) {
+    var f = el('label', 'pr-field'); f.appendChild(el('span', '', 'Fecha'));
+    var i = document.createElement('input'); i.type = 'date'; i.id = 'pr-date'; i.value = ymdStr(P.n);
+    i.addEventListener('change', function () {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(i.value); if (!m) return;
+      P.n = Lit.dn(+m[1], +m[2], +m[3]); P.mass = null; P.choice = null; renderPrinter();
+    });
+    f.appendChild(i); host.appendChild(f);
+    host.appendChild(el('p', 'pr-hint', dayOf(P.n).principal.name));
+  }
+
+  function renderOptions() {
+    var host = document.getElementById('pr-opts'); host.textContent = '';
+    if (P.kind === 'misa') {
+      host.appendChild(el('p', 'label', 'Día'));
+      dateField(host);
+      var res = Lec.readingsFor(dayOf(P.n), window.LECT_T, window.LECT_S);
+      if (res.masses.length > 1) {
+        if (!P.mass || !res.masses.some(function (m) { return m.id === P.mass; })) P.mass = (res.masses.find(function (x) { return ['dia', 'cena', 'main'].indexOf(x.id) >= 0; }) || res.masses[0]).id;
+        var g = el('div', 'pills'); g.setAttribute('role', 'group'); g.setAttribute('aria-label', 'Misa');
+        res.masses.forEach(function (m) {
+          var b = el('button', 'pill', m.label); b.type = 'button'; b.id = 'pr-misa-' + m.id;
+          b.setAttribute('aria-pressed', P.mass === m.id ? 'true' : 'false');
+          b.addEventListener('click', function () { P.mass = m.id; renderPrinter(); });
+          g.appendChild(b);
+        });
+        host.appendChild(g);
+      }
+    } else if (P.kind === 'horas') {
+      host.appendChild(el('p', 'label', 'Día y hora'));
+      dateField(host);
+      var hg = el('div', 'hours'); hg.setAttribute('role', 'group'); hg.setAttribute('aria-label', 'Hora');
+      HOURS.forEach(function (h) {
+        var b = el('button', 'pill'); b.type = 'button'; b.id = 'pr-hora-' + h.id;
+        b.appendChild(document.createTextNode(h.name)); b.appendChild(el('small', '', h.when));
+        b.setAttribute('aria-pressed', P.hour === h.id ? 'true' : 'false');
+        b.addEventListener('click', function () { P.hour = h.id; renderPrinter(); });
+        hg.appendChild(b);
+      });
+      host.appendChild(hg);
+      var H = Hor.forDay(P.n, P.choice, null);
+      if (H.options.length) {
+        var c = el('div', 'choice'); c.appendChild(el('p', 'label', 'Qué celebrar'));
+        var o = el('div', 'opts');
+        H.options.forEach(function (x, i) {
+          var b = el('button', 'opt', x.label); b.type = 'button'; b.id = 'pr-cel-' + i;
+          b.setAttribute('aria-pressed', (P.choice || 'feria') === x.id ? 'true' : 'false');
+          b.addEventListener('click', function () { P.choice = x.id === 'feria' ? null : x.id; renderPrinter(); });
+          o.appendChild(b);
+        });
+        c.appendChild(o); host.appendChild(c);
+      }
+    } else {
+      host.appendChild(el('p', 'label', 'Tu celebración'));
+      host.appendChild(textField('pr-ctitle', 'Título', P.custom.title, 'Por ejemplo: Misa de acción de gracias', function (v) { P.custom.title = v; }));
+      host.appendChild(textField('pr-csub', 'Subtítulo (opcional)', P.custom.subtitle, 'Por ejemplo: Parroquia de San Juan, 24 de junio', function (v) { P.custom.subtitle = v; }));
+      var ol = el('ol', 'pr-readings'); ol.id = 'pr-readings';
+      P.custom.readings.forEach(function (r, i) { ol.appendChild(readingEditor(r, i)); });
+      host.appendChild(ol);
+      var add = el('button', 'pr-btn pr-add', '+ Añadir lectura'); add.type = 'button'; add.id = 'pr-add';
+      add.addEventListener('click', function () {
+        var i = P.custom.readings.length, seq = ['Primera lectura', 'Salmo responsorial', 'Segunda lectura', 'Evangelio'];
+        var type = i < 4 ? seq[i] : 'Lectura';
+        P.custom.readings.push({ type: type, book: type === 'Salmo responsorial' ? 'PSA' : type === 'Evangelio' ? 'MAT' : '', ref: '' });
+        saveCustom(); renderOptions(); updatePreview();
+        var last = document.getElementById('pr-r' + i + '-book'); if (last) last.focus();
+      });
+      host.appendChild(add);
+      host.appendChild(el('p', 'pr-hint', 'Escribe el capítulo y los versículos como en el misal, por ejemplo «55, 1-11» o «22, 1-3. 4-5».'));
+    }
+  }
+
+  function textField(id, label, value, ph, set) {
+    var f = el('label', 'pr-field'); f.appendChild(el('span', '', label));
+    var i = document.createElement('input'); i.type = 'text'; i.id = id; i.value = value || ''; i.placeholder = ph; i.autocomplete = 'off';
+    i.addEventListener('input', function () { set(i.value); saveCustom(); updatePreview(); });
+    f.appendChild(i); return f;
+  }
+
+  function readingEditor(r, i) {
+    var li = el('li', 'pr-reading');
+    var ft = el('label', 'pr-field'); ft.appendChild(el('span', '', 'Lectura ' + (i + 1)));
+    var st = document.createElement('select'); st.id = 'pr-r' + i + '-type';
+    R_TYPES.forEach(function (t) { var o = document.createElement('option'); o.value = t; o.textContent = t; if (t === r.type) o.selected = true; st.appendChild(o); });
+    st.addEventListener('change', function () { var was = r.type === 'Salmo responsorial'; r.type = st.value; saveCustom(); if (was !== (r.type === 'Salmo responsorial')) renderOptions(); updatePreview(); });
+    ft.appendChild(st); li.appendChild(ft);
+    var row = el('div', 'pr-row');
+    var fb = el('label', 'pr-field'); fb.appendChild(el('span', '', 'Libro'));
+    var sb = document.createElement('select'); sb.id = 'pr-r' + i + '-book';
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = 'Elige un libro'; sb.appendChild(o0);
+    var ot = document.createElement('optgroup'); ot.label = 'Antiguo Testamento';
+    var nt = document.createElement('optgroup'); nt.label = 'Nuevo Testamento';
+    var inNT = false;
+    Object.keys(Lec.BOOKS).forEach(function (code) {
+      if (code === NT_START) inNT = true;
+      var o = document.createElement('option'); o.value = code; o.textContent = BOOK_NAMES[code] || code; if (code === r.book) o.selected = true;
+      (inNT ? nt : ot).appendChild(o);
+    });
+    sb.appendChild(ot); sb.appendChild(nt);
+    sb.addEventListener('change', function () { r.book = sb.value; saveCustom(); updatePreview(); });
+    fb.appendChild(sb); row.appendChild(fb);
+    var fr = el('label', 'pr-field'); fr.appendChild(el('span', '', 'Capítulo y versículos'));
+    var ir = document.createElement('input'); ir.type = 'text'; ir.id = 'pr-r' + i + '-ref'; ir.value = r.ref || ''; ir.placeholder = '55, 1-11'; ir.inputMode = 'text'; ir.autocomplete = 'off';
+    ir.addEventListener('input', function () { r.ref = ir.value; saveCustom(); updatePreview(); });
+    fr.appendChild(ir); row.appendChild(fr);
+    li.appendChild(row);
+    if (r.type === 'Salmo responsorial') {
+      var fa = el('label', 'pr-field'); fa.appendChild(el('span', '', 'Respuesta (opcional)'));
+      var ia = document.createElement('input'); ia.type = 'text'; ia.id = 'pr-r' + i + '-resp'; ia.value = r.resp || ''; ia.placeholder = 'Escribe aquí la antífona'; ia.autocomplete = 'off';
+      ia.addEventListener('input', function () { r.resp = ia.value; saveCustom(); updatePreview(); });
+      fa.appendChild(ia); li.appendChild(fa);
+    }
+    var tools = el('div', 'pr-tools');
+    function tool(txt, label, dis, fn) { var b = el('button', 'pr-btn', txt); b.type = 'button'; b.setAttribute('aria-label', label); b.disabled = dis; b.addEventListener('click', fn); tools.appendChild(b); }
+    var list = P.custom.readings;
+    tool('↑', 'Subir lectura ' + (i + 1), i === 0, function () { list.splice(i - 1, 0, list.splice(i, 1)[0]); saveCustom(); renderOptions(); updatePreview(); });
+    tool('↓', 'Bajar lectura ' + (i + 1), i === list.length - 1, function () { list.splice(i + 1, 0, list.splice(i, 1)[0]); saveCustom(); renderOptions(); updatePreview(); });
+    tool('Quitar', 'Quitar lectura ' + (i + 1), false, function () { list.splice(i, 1); saveCustom(); renderOptions(); updatePreview(); });
+    li.appendChild(tools);
+    return li;
+  }
+
+  function updatePreview() {
+    var spec = currentSpec();
+    var host = document.getElementById('pr-sheet');
+    MisalPDF.preview(spec, P.size, host);
+    var sh = host.querySelector('.sheet'); if (sh) sh.classList.add(P.size);
+    document.getElementById('pr-pages').textContent = '';
+    document.getElementById('pr-go').disabled = !ready();
+    if (!ready()) status('Escribe un título para tu celebración.'); else if (P.lib !== false) status('');
+    schedule();
+  }
+
+  // Genera el PDF en segundo plano para que los botones respondan al instante
+  function keyOf(spec) { return P.size + '|' + JSON.stringify(spec); }
+  function schedule() {
+    clearTimeout(P.timer);
+    if (!P.lib || !ready()) return;
+    P.timer = setTimeout(function () { build().catch(function () {}); }, 350);
+  }
+  function build() {
+    var spec = currentSpec(), key = keyOf(spec);
+    if (P.cache && P.cache.key === key) return Promise.resolve(P.cache);
+    return MisalPDF.render(spec, P.size).then(function (r) {
+      P.cache = { key: key, blob: r.blob, pages: r.pages, name: fileName() };
+      if (P.open && keyOf(currentSpec()) === key) document.getElementById('pr-pages').textContent = r.pages === 1 ? 'El PDF ocupa 1 página.' : 'El PDF ocupa ' + r.pages + ' páginas.';
+      return P.cache;
+    });
+  }
+
+  // Descarga: dentro de Claude, con permiso del visor; fuera, descarga normal del navegador
+  var claudeDl = null;
+  if (window.claude && typeof window.claude.use === 'function') {
+    window.claude.use('downloads').then(function (ns) { claudeDl = ns; refreshShare(); }).catch(function () {});
+  }
+  function shareable() {
+    if (claudeDl || !navigator.canShare) return false;
+    try { return navigator.canShare({ files: [new File(['x'], 'x.pdf', { type: 'application/pdf' })] }); } catch (e) { return false; }
+  }
+  function refreshShare() { document.getElementById('pr-share').hidden = !shareable(); }
+  refreshShare();
+
+  document.getElementById('pr-go').addEventListener('click', function () {
+    if (!ready()) return;
+    status('Creando el PDF…');
+    build().then(function (r) {
+      if (claudeDl) {
+        return claudeDl.save({ filename: r.name, data: r.blob }).then(function () { status('PDF guardado.'); }, function (e) {
+          var c = e && e.code;
+          status(c === 'declined' ? 'Descarga cancelada.' : c === 'rate_limited' ? 'Ya hay una descarga pendiente; inténtalo en un momento.' : 'Aquí no se puede descargar. Abre la app desde tu página de GitHub.');
+        });
+      }
+      var url = URL.createObjectURL(r.blob), a = document.createElement('a');
+      a.href = url; a.download = r.name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      status('PDF descargado: ' + r.name);
+    }).catch(function (e) {
+      status(e && e.message === 'offline' ? 'Para crear el PDF hace falta conexión a internet la primera vez.' : 'No se ha podido crear el PDF.');
+    });
+  });
+  document.getElementById('pr-share').addEventListener('click', function () {
+    if (!ready()) return;
+    var spec = currentSpec(), key = keyOf(spec);
+    function go(r) {
+      var f = new File([r.blob], r.name, { type: 'application/pdf' });
+      navigator.share({ files: [f], title: spec.docTitle }).catch(function (e) { if (e && e.name !== 'AbortError') status('No se ha podido compartir; usa «Descargar PDF».'); });
+    }
+    if (P.cache && P.cache.key === key) go(P.cache);
+    else { status('Creando el PDF… vuelve a pulsar «Compartir» cuando esté listo.'); build().then(function () { status('Listo. Pulsa «Compartir o imprimir».'); }); }
+  });
+
+  renderTabs();
+  renderDays();
+  render();
+})();
+</script>

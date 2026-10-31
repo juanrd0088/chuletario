@@ -1,0 +1,1922 @@
+[
+{
+"id": "basil_the_great_and_gregory_nazianzen_bishops",
+"m": 1,
+"d": 2,
+"rank": 10,
+"color": "blanco",
+"name": "San Basilio Magno y San Gregorio Nacianceno, obispos y doctores de la Iglesia"
+},
+{
+"id": "most_holy_name_of_jesus",
+"m": 1,
+"d": 3,
+"rank": 12,
+"color": "blanco",
+"name": "Santísimo Nombre de Jesús"
+},
+{
+"id": "raymond_of_penyafort_priest",
+"m": 1,
+"d": 7,
+"rank": 12,
+"color": "blanco",
+"name": "San Raimundo de Peñafort, presbítero"
+},
+{
+"id": "eulogius_of_cordoba_bishop",
+"m": 1,
+"d": 9,
+"rank": 12,
+"color": "rojo",
+"name": "San Eulogio de Córdoba, obispo"
+},
+{
+"id": "hilary_of_poitiers_bishop",
+"m": 1,
+"d": 13,
+"rank": 12,
+"color": "blanco",
+"name": "San Hilario de Poitiers, obispo y doctor de la Iglesia"
+},
+{
+"id": "anthony_of_egypt_abbot",
+"m": 1,
+"d": 17,
+"rank": 10,
+"color": "blanco",
+"name": "San Antonio de Egipto, Abad"
+},
+{
+"id": "fabian_i_pope",
+"m": 1,
+"d": 20,
+"rank": 12,
+"color": "rojo",
+"name": "San Fabiano, papa y mártir"
+},
+{
+"id": "sebastian_of_milan_martyr",
+"m": 1,
+"d": 20,
+"rank": 12,
+"color": "rojo",
+"name": "San Sebastián, mártir"
+},
+{
+"id": "fructuosus_of_tarragona_bishop_and_augurius_of_tarragona_and_eulogius_of_tarragona_deacons_martyrs",
+"m": 1,
+"d": 20,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Fructuoso, obispo, y Augurio y Eulogio, diáconos, mártires"
+},
+{
+"id": "agnes_of_rome_virgin",
+"m": 1,
+"d": 21,
+"rank": 10,
+"color": "rojo",
+"name": "Santa Inés, virgen y mártir"
+},
+{
+"id": "vincent_of_saragossa_deacon",
+"m": 1,
+"d": 22,
+"rank": 11,
+"color": "rojo",
+"name": "San Vicente de Zaragoza, diácono y mártir"
+},
+{
+"id": "ildephonsus_of_toledo_bishop",
+"m": 1,
+"d": 23,
+"rank": 12,
+"color": "blanco",
+"name": "San Ildefonso, obispo de Toledo"
+},
+{
+"id": "francis_de_sales_bishop",
+"m": 1,
+"d": 24,
+"rank": 10,
+"color": "blanco",
+"name": "San Francisco de Sales, obispo y doctor de la Iglesia"
+},
+{
+"id": "conversion_of_saint_paul_the_apostle",
+"m": 1,
+"d": 25,
+"rank": 7,
+"color": "blanco",
+"name": "Conversión de San Pablo, apóstol"
+},
+{
+"id": "timothy_of_ephesus_and_titus_of_crete_bishops",
+"m": 1,
+"d": 26,
+"rank": 10,
+"color": "blanco",
+"name": "Santos Timoteo y Tito, obispos"
+},
+{
+"id": "angela_merici_virgin",
+"m": 1,
+"d": 27,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Ángela Merici, virgen"
+},
+{
+"id": "thomas_aquinas_priest",
+"m": 1,
+"d": 28,
+"rank": 10,
+"color": "blanco",
+"name": "Santo Tomás de Aquino, obispo y doctor de la Iglesia"
+},
+{
+"id": "john_bosco_priest",
+"m": 1,
+"d": 31,
+"rank": 10,
+"color": "blanco",
+"name": "San Juan Bosco, presbítero"
+},
+{
+"id": "presentation_of_the_lord",
+"m": 2,
+"d": 2,
+"rank": 5,
+"color": "blanco",
+"name": "Presentación de Jesús en el Templo"
+},
+{
+"id": "blaise_of_sebaste_bishop",
+"m": 2,
+"d": 3,
+"rank": 12,
+"color": "rojo",
+"name": "San Blás, obispo y mártir"
+},
+{
+"id": "ansgar_of_hamburg_bishop",
+"m": 2,
+"d": 3,
+"rank": 12,
+"color": "blanco",
+"name": "San Ascario, obispo"
+},
+{
+"id": "agatha_of_sicily_virgin",
+"m": 2,
+"d": 5,
+"rank": 10,
+"color": "rojo",
+"name": "Santa Águeda, virgen y mártir"
+},
+{
+"id": "paul_miki_and_companions_martyrs",
+"m": 2,
+"d": 6,
+"rank": 10,
+"color": "rojo",
+"name": "Santos Pablo Miki y compañeros, mártires"
+},
+{
+"id": "jerome_emiliani",
+"m": 2,
+"d": 8,
+"rank": 12,
+"color": "blanco",
+"name": "San Jerónimo Emiliani"
+},
+{
+"id": "josephine_bakhita_virgin",
+"m": 2,
+"d": 8,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Josefina Bakhita, virgen"
+},
+{
+"id": "scholastica_of_nursia_virgin",
+"m": 2,
+"d": 10,
+"rank": 10,
+"color": "blanco",
+"name": "Santa Escolástica, virgen"
+},
+{
+"id": "our_lady_of_lourdes",
+"m": 2,
+"d": 11,
+"rank": 12,
+"color": "blanco",
+"name": "Nuestra Señora de Lourdes"
+},
+{
+"id": "cyril_constantine_the_philosopher_monk_and_methodius_michael_of_thessaloniki_bishop",
+"m": 2,
+"d": 14,
+"rank": 8,
+"color": "blanco",
+"name": "Santos Cirilo, monje, y Metodio, obispo, patronos de Europa"
+},
+{
+"id": "seven_holy_founders_of_the_servite_order",
+"m": 2,
+"d": 17,
+"rank": 12,
+"color": "blanco",
+"name": "Los Santos Siete Fundadores de la Orden de los Servitas"
+},
+{
+"id": "peter_damian_bishop",
+"m": 2,
+"d": 21,
+"rank": 12,
+"color": "blanco",
+"name": "San Pedro Damián, obispo y doctor de la Iglesia"
+},
+{
+"id": "chair_of_saint_peter_the_apostle",
+"m": 2,
+"d": 22,
+"rank": 7,
+"color": "blanco",
+"name": "Cátedra de San Pedro, apóstol"
+},
+{
+"id": "polycarp_of_smyrna_bishop",
+"m": 2,
+"d": 23,
+"rank": 10,
+"color": "rojo",
+"name": "San Policarpo, obispo y mártir"
+},
+{
+"id": "gregory_of_narek_abbot",
+"m": 2,
+"d": 27,
+"rank": 12,
+"color": "blanco",
+"name": "San Gregorio de Narek, Abad y doctor de la Iglesia"
+},
+{
+"id": "casimir_of_poland",
+"m": 3,
+"d": 4,
+"rank": 12,
+"color": "blanco",
+"name": "San Casimiro"
+},
+{
+"id": "perpetua_of_carthage_and_felicity_of_carthage_martyrs",
+"m": 3,
+"d": 7,
+"rank": 10,
+"color": "rojo",
+"name": "Santas Perpetua y Felicidad, mártires"
+},
+{
+"id": "john_of_god_duarte_cidade_religious",
+"m": 3,
+"d": 8,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan de Dios, religioso"
+},
+{
+"id": "frances_of_rome_religious",
+"m": 3,
+"d": 9,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Francisca Romana, religiosa"
+},
+{
+"id": "patrick_of_ireland_bishop",
+"m": 3,
+"d": 17,
+"rank": 12,
+"color": "blanco",
+"name": "San Patricio, obispo"
+},
+{
+"id": "cyril_of_jerusalem_bishop",
+"m": 3,
+"d": 18,
+"rank": 12,
+"color": "blanco",
+"name": "San Cirilio de Jerusalén, obispo y doctor de la Iglesia"
+},
+{
+"id": "joseph_spouse_of_mary",
+"m": 3,
+"d": 19,
+"rank": 3,
+"color": "blanco",
+"name": "José, Esposo de María"
+},
+{
+"id": "turibius_of_mogrovejo_bishop",
+"m": 3,
+"d": 23,
+"rank": 12,
+"color": "blanco",
+"name": "Santo Toribio de Mogrovejo, obispo"
+},
+{
+"id": "annunciation_of_the_lord",
+"m": 3,
+"d": 25,
+"rank": 3,
+"color": "blanco",
+"name": "Anunciación"
+},
+{
+"id": "francis_of_paola_hermit",
+"m": 4,
+"d": 2,
+"rank": 12,
+"color": "blanco",
+"name": "San Francisco de Paula, ermitaño"
+},
+{
+"id": "vincent_ferrer_priest",
+"m": 4,
+"d": 5,
+"rank": 12,
+"color": "blanco",
+"name": "San Vicente Ferrer, presbítero"
+},
+{
+"id": "john_baptist_de_la_salle_priest",
+"m": 4,
+"d": 7,
+"rank": 10,
+"color": "blanco",
+"name": "San Juan Bautista de la Salle, presbítero"
+},
+{
+"id": "stanislaus_of_szczepanow_bishop",
+"m": 4,
+"d": 11,
+"rank": 10,
+"color": "rojo",
+"name": "San Estanislao de Cracovia, obispo y mártir"
+},
+{
+"id": "martin_i_pope",
+"m": 4,
+"d": 13,
+"rank": 12,
+"color": "rojo",
+"name": "San Martín I, papa y mártir"
+},
+{
+"id": "hermenegild_the_visigoths_martyr",
+"m": 4,
+"d": 13,
+"rank": 12,
+"color": "rojo",
+"name": "San Hermenegildo, mártir"
+},
+{
+"id": "anselm_of_canterbury_bishop",
+"m": 4,
+"d": 21,
+"rank": 12,
+"color": "blanco",
+"name": "San Anselmo de Canterbury, obispo y doctor de la Iglesia"
+},
+{
+"id": "george_of_lydda_martyr",
+"m": 4,
+"d": 23,
+"rank": 12,
+"color": "rojo",
+"name": "San Jorge, mártir"
+},
+{
+"id": "adalbert_of_prague_bishop",
+"m": 4,
+"d": 23,
+"rank": 12,
+"color": "rojo",
+"name": "San Adalberto, obispo y mártir"
+},
+{
+"id": "fidelis_of_sigmaringen_priest",
+"m": 4,
+"d": 24,
+"rank": 12,
+"color": "rojo",
+"name": "San Fidel de Sigmaringa, presbítero y mártir"
+},
+{
+"id": "mark_evangelist",
+"m": 4,
+"d": 25,
+"rank": 7,
+"color": "rojo",
+"name": "San Marcos, evangelista"
+},
+{
+"id": "isidore_of_seville_bishop",
+"m": 4,
+"d": 26,
+"rank": 8,
+"color": "blanco",
+"name": "San Isidoro, obispo y doctor de la Iglesia"
+},
+{
+"id": "peter_chanel_priest",
+"m": 4,
+"d": 28,
+"rank": 12,
+"color": "rojo",
+"name": "San Pedro Chanel, presbítero y mártir"
+},
+{
+"id": "louis_grignion_de_montfort_priest",
+"m": 4,
+"d": 28,
+"rank": 12,
+"color": "blanco",
+"name": "San Luis María Grignion de Montfort, presbítero"
+},
+{
+"id": "catherine_of_siena_virgin",
+"m": 4,
+"d": 29,
+"rank": 8,
+"color": "blanco",
+"name": "Santa Catalina de Siena, virgen, doctora de la Iglesia y Patrona Secundaria de Europa"
+},
+{
+"id": "pius_v_pope",
+"m": 4,
+"d": 30,
+"rank": 12,
+"color": "blanco",
+"name": "San Pío V, papa"
+},
+{
+"id": "joseph_the_worker",
+"m": 5,
+"d": 1,
+"rank": 12,
+"color": "blanco",
+"name": "San José Obrero"
+},
+{
+"id": "athanasius_of_alexandria_bishop",
+"m": 5,
+"d": 2,
+"rank": 10,
+"color": "blanco",
+"name": "San Atanasio de Alejandría, obispo y doctor de la Iglesia"
+},
+{
+"id": "philip_and_james_apostles",
+"m": 5,
+"d": 3,
+"rank": 7,
+"color": "rojo",
+"name": "Santos Felipe y Santiago, apóstoles"
+},
+{
+"id": "john_of_avila_priest",
+"m": 5,
+"d": 10,
+"rank": 11,
+"color": "blanco",
+"name": "San Juan de Ávila, presbítero y doctor de la Iglesia"
+},
+{
+"id": "nereus_of_terracina_and_achilleus_of_terracina_martyrs",
+"m": 5,
+"d": 12,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Nereo y Aquileo, mártires"
+},
+{
+"id": "pancras_of_rome_martyr",
+"m": 5,
+"d": 12,
+"rank": 12,
+"color": "rojo",
+"name": "San Pancracio, mártir"
+},
+{
+"id": "our_lady_of_fatima",
+"m": 5,
+"d": 13,
+"rank": 12,
+"color": "blanco",
+"name": "Nuestra Señora de Fátima"
+},
+{
+"id": "matthias_apostle",
+"m": 5,
+"d": 14,
+"rank": 7,
+"color": "rojo",
+"name": "San Matías, apóstol"
+},
+{
+"id": "isidore_the_farmer",
+"m": 5,
+"d": 15,
+"rank": 11,
+"color": "blanco",
+"name": "San Isidro Labrador"
+},
+{
+"id": "paschal_baylon_religious",
+"m": 5,
+"d": 17,
+"rank": 12,
+"color": "blanco",
+"name": "San Pascual Bailón, religioso"
+},
+{
+"id": "john_i_pope",
+"m": 5,
+"d": 18,
+"rank": 12,
+"color": "rojo",
+"name": "San Juan I, papa y mártir"
+},
+{
+"id": "bernardine_of_siena_priest",
+"m": 5,
+"d": 20,
+"rank": 12,
+"color": "blanco",
+"name": "San Bernardino de Siena, presbítero"
+},
+{
+"id": "christopher_magallanes_priest_and_companions_martyrs",
+"m": 5,
+"d": 21,
+"rank": 12,
+"color": "rojo",
+"name": "San Cristóbal Magallanes, presbítero y Compañeros, mártires"
+},
+{
+"id": "rita_of_cascia_religious",
+"m": 5,
+"d": 22,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Rita de Cascia"
+},
+{
+"id": "joaquina_of_saint_francis_of_assisi_de_vedruna_religious",
+"m": 5,
+"d": 22,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Joaquina de Vedruna, religiosa"
+},
+{
+"id": "bede_the_venerable_priest",
+"m": 5,
+"d": 25,
+"rank": 12,
+"color": "blanco",
+"name": "San Beda el Venerable, presbítero y doctor de la Iglesia"
+},
+{
+"id": "gregory_vii_pope",
+"m": 5,
+"d": 25,
+"rank": 12,
+"color": "blanco",
+"name": "San Gregorio VII, papa"
+},
+{
+"id": "mary_magdalene_de_pazzi_virgin",
+"m": 5,
+"d": 25,
+"rank": 12,
+"color": "blanco",
+"name": "Santa María Magdalena de Pazzi, virgen"
+},
+{
+"id": "philip_neri_priest",
+"m": 5,
+"d": 26,
+"rank": 10,
+"color": "blanco",
+"name": "San Felipe Neri, presbítero"
+},
+{
+"id": "augustine_of_canterbury_bishop",
+"m": 5,
+"d": 27,
+"rank": 12,
+"color": "blanco",
+"name": "San Agustín de Canterbury, obispo"
+},
+{
+"id": "paul_vi_pope",
+"m": 5,
+"d": 29,
+"rank": 12,
+"color": "blanco",
+"name": "San Pablo VI, papa"
+},
+{
+"id": "ferdinand_iii_of_castile",
+"m": 5,
+"d": 30,
+"rank": 12,
+"color": "blanco",
+"name": "San Fernando"
+},
+{
+"id": "visitation_of_mary",
+"m": 5,
+"d": 31,
+"rank": 7,
+"color": "blanco",
+"name": "Visitación de la Santísima Virgen María"
+},
+{
+"id": "justin_martyr",
+"m": 6,
+"d": 1,
+"rank": 10,
+"color": "rojo",
+"name": "San Justino, mártir"
+},
+{
+"id": "marcellinus_of_rome_and_peter_the_exorcist_martyrs",
+"m": 6,
+"d": 2,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Marcelino y Pedro, mártires"
+},
+{
+"id": "charles_lwanga_and_companions_martyrs",
+"m": 6,
+"d": 3,
+"rank": 10,
+"color": "rojo",
+"name": "Santos Carlos Luanga y compañeros, mártires"
+},
+{
+"id": "boniface_of_mainz_bishop",
+"m": 6,
+"d": 5,
+"rank": 10,
+"color": "rojo",
+"name": "San Bonifacio, obispo y mártir"
+},
+{
+"id": "norbert_of_xanten_bishop",
+"m": 6,
+"d": 6,
+"rank": 12,
+"color": "blanco",
+"name": "San Norberto, obispo"
+},
+{
+"id": "ephrem_the_syrian_deacon",
+"m": 6,
+"d": 9,
+"rank": 12,
+"color": "blanco",
+"name": "San Efrén de Siria, Diácono y doctor de la Iglesia"
+},
+{
+"id": "barnabas_apostle",
+"m": 6,
+"d": 11,
+"rank": 10,
+"color": "rojo",
+"name": "San Bernabé, apóstol"
+},
+{
+"id": "anthony_of_padua_priest",
+"m": 6,
+"d": 13,
+"rank": 10,
+"color": "blanco",
+"name": "San Antonio de Padua, presbítero y doctor de la Iglesia"
+},
+{
+"id": "maria_micaela_of_the_blessed_sacrament_desmaisieres_virgin",
+"m": 6,
+"d": 15,
+"rank": 12,
+"color": "blanco",
+"name": "Santa María Micaela del Santísimo Sacramento, virgen"
+},
+{
+"id": "romuald_of_ravenna_abbot",
+"m": 6,
+"d": 19,
+"rank": 12,
+"color": "blanco",
+"name": "San Romualdo, Abad"
+},
+{
+"id": "aloysius_gonzaga_religious",
+"m": 6,
+"d": 21,
+"rank": 10,
+"color": "blanco",
+"name": "San Luis Gonzaga, religioso"
+},
+{
+"id": "paulinus_of_nola_bishop",
+"m": 6,
+"d": 22,
+"rank": 12,
+"color": "blanco",
+"name": "San Paulino de Nola, obispo"
+},
+{
+"id": "john_fisher_bishop_and_thomas_more_martyrs",
+"m": 6,
+"d": 22,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Juan Fisher, obispo, y Tomás Moro, mártires"
+},
+{
+"id": "nativity_of_john_the_baptist",
+"m": 6,
+"d": 24,
+"rank": 3,
+"color": "blanco",
+"name": "Nacimiento de Juan Bautista"
+},
+{
+"id": "pelagius_of_cordoba_martyr",
+"m": 6,
+"d": 26,
+"rank": 12,
+"color": "rojo",
+"name": "San Pelayo, mártir"
+},
+{
+"id": "cyril_of_alexandria_bishop",
+"m": 6,
+"d": 27,
+"rank": 12,
+"color": "blanco",
+"name": "San Cirilio de Alexandria, obispo y doctor de la Iglesia"
+},
+{
+"id": "irenaeus_of_lyon_bishop",
+"m": 6,
+"d": 28,
+"rank": 10,
+"color": "rojo",
+"name": "San Ireneo de Lyon, obispo, mártir y doctor de la Iglesia"
+},
+{
+"id": "peter_and_paul_apostles",
+"m": 6,
+"d": 29,
+"rank": 3,
+"color": "rojo",
+"name": "San Pedro y San Pablo, apóstoles"
+},
+{
+"id": "first_martyrs_of_the_holy_roman_church",
+"m": 6,
+"d": 30,
+"rank": 12,
+"color": "rojo",
+"name": "Primeros mártires de la Iglesia de Roma"
+},
+{
+"id": "thomas_apostle",
+"m": 7,
+"d": 3,
+"rank": 7,
+"color": "rojo",
+"name": "Santo Tomás, apóstol"
+},
+{
+"id": "elizabeth_of_portugal",
+"m": 7,
+"d": 4,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Isabel de Portugal"
+},
+{
+"id": "anthony_zaccaria_priest",
+"m": 7,
+"d": 5,
+"rank": 12,
+"color": "blanco",
+"name": "San Antonio María Zaccaría, presbítero"
+},
+{
+"id": "maria_goretti_virgin",
+"m": 7,
+"d": 6,
+"rank": 12,
+"color": "rojo",
+"name": "Santa María Goretti, virgen y mártir"
+},
+{
+"id": "augustine_zhao_rong_priest_and_companions_martyrs",
+"m": 7,
+"d": 9,
+"rank": 12,
+"color": "rojo",
+"name": "San Agustín Zhao Rong, presbítero, y compañeros, mártires"
+},
+{
+"id": "benedict_of_nursia_abbot",
+"m": 7,
+"d": 11,
+"rank": 8,
+"color": "blanco",
+"name": "San Benito, abad, patrono de Europa"
+},
+{
+"id": "henry_ii_emperor",
+"m": 7,
+"d": 13,
+"rank": 12,
+"color": "blanco",
+"name": "San Enrique"
+},
+{
+"id": "camillus_de_lellis_priest",
+"m": 7,
+"d": 14,
+"rank": 12,
+"color": "blanco",
+"name": "San Camilo de Lelis, presbítero"
+},
+{
+"id": "bonaventure_of_bagnoregio_bishop",
+"m": 7,
+"d": 15,
+"rank": 10,
+"color": "blanco",
+"name": "San Buenaventura, obispo y doctor de la Iglesia"
+},
+{
+"id": "our_lady_of_mount_carmel",
+"m": 7,
+"d": 16,
+"rank": 11,
+"color": "blanco",
+"name": "Nuestra Señora del Monte Carmelo"
+},
+{
+"id": "apollinaris_of_ravenna_bishop",
+"m": 7,
+"d": 20,
+"rank": 12,
+"color": "rojo",
+"name": "San Apolinar, obispo y mártir"
+},
+{
+"id": "lawrence_of_brindisi_priest",
+"m": 7,
+"d": 21,
+"rank": 12,
+"color": "blanco",
+"name": "San Lorenzo de Brindis, presbítero y doctor de la Iglesia"
+},
+{
+"id": "mary_magdalene",
+"m": 7,
+"d": 22,
+"rank": 7,
+"color": "blanco",
+"name": "Santa María Magdalena"
+},
+{
+"id": "bridget_of_sweden_religious",
+"m": 7,
+"d": 23,
+"rank": 8,
+"color": "blanco",
+"name": "Santa Brígida, religiosa, patrona de Europa"
+},
+{
+"id": "sharbel_makhluf_priest",
+"m": 7,
+"d": 24,
+"rank": 12,
+"color": "blanco",
+"name": "San Sarbelio Makhluf, presbítero y eremita"
+},
+{
+"id": "james_apostle",
+"m": 7,
+"d": 25,
+"rank": 4,
+"color": "rojo",
+"name": "Santiago, apóstol, Patrono de España"
+},
+{
+"id": "joachim_and_anne_parents_of_mary",
+"m": 7,
+"d": 26,
+"rank": 10,
+"color": "blanco",
+"name": "San Joaquín y Santa Ana"
+},
+{
+"id": "martha_of_bethany_mary_of_bethany_and_lazarus_of_bethany",
+"m": 7,
+"d": 29,
+"rank": 10,
+"color": "blanco",
+"name": "Santos Marta, María y Lázaro"
+},
+{
+"id": "peter_chrysologus_bishop",
+"m": 7,
+"d": 30,
+"rank": 12,
+"color": "blanco",
+"name": "San Pedro Crisólogo, obispo y doctor de la Iglesia"
+},
+{
+"id": "ignatius_of_loyola_priest",
+"m": 7,
+"d": 31,
+"rank": 10,
+"color": "blanco",
+"name": "San Ignacio de Loyola, presbítero"
+},
+{
+"id": "alphonsus_mary_liguori_bishop",
+"m": 8,
+"d": 1,
+"rank": 10,
+"color": "blanco",
+"name": "San Alfonso María de Ligorio, obispo y doctor de la Iglesia"
+},
+{
+"id": "eusebius_of_vercelli_bishop",
+"m": 8,
+"d": 2,
+"rank": 12,
+"color": "blanco",
+"name": "San Eusebio de Vercelli, obispo"
+},
+{
+"id": "peter_julian_eymard_priest",
+"m": 8,
+"d": 2,
+"rank": 12,
+"color": "blanco",
+"name": "San Pedro Julián Eymard, presbítero"
+},
+{
+"id": "john_mary_vianney_priest",
+"m": 8,
+"d": 4,
+"rank": 10,
+"color": "blanco",
+"name": "San Juan María Vianney, presbítero"
+},
+{
+"id": "dedication_of_the_basilica_of_saint_mary_major",
+"m": 8,
+"d": 5,
+"rank": 12,
+"color": "blanco",
+"name": "Dedicación de la Basílica de Santa María Mayor"
+},
+{
+"id": "transfiguration_of_the_lord",
+"m": 8,
+"d": 6,
+"rank": 5,
+"color": "blanco",
+"name": "Transfiguración"
+},
+{
+"id": "sixtus_ii_pope_and_companions_martyrs",
+"m": 8,
+"d": 7,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Sixto II, papa, y compañeros, mártires"
+},
+{
+"id": "cajetan_of_thiene_priest",
+"m": 8,
+"d": 7,
+"rank": 12,
+"color": "blanco",
+"name": "San Cayetano de Thiene, presbítero"
+},
+{
+"id": "dominic_de_guzman_priest",
+"m": 8,
+"d": 8,
+"rank": 10,
+"color": "blanco",
+"name": "Santo Domingo de Guzmán, presbítero"
+},
+{
+"id": "teresa_benedicta_of_the_cross_stein_virgin",
+"m": 8,
+"d": 9,
+"rank": 8,
+"color": "rojo",
+"name": "Santa Teresa Benedicta de la Cruz (Edith Stein), virgen, mártir y Patrona Secundaria de Europa"
+},
+{
+"id": "lawrence_of_rome_deacon",
+"m": 8,
+"d": 10,
+"rank": 7,
+"color": "rojo",
+"name": "San Lorenzo, diácono y mártir"
+},
+{
+"id": "clare_of_assisi_virgin",
+"m": 8,
+"d": 11,
+"rank": 10,
+"color": "blanco",
+"name": "Santa Clara, virgen"
+},
+{
+"id": "jane_frances_de_chantal_religious",
+"m": 8,
+"d": 12,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Juana Francisca de Chantal, religiosa"
+},
+{
+"id": "pontian_i_pope_and_hippolytus_of_rome_priest",
+"m": 8,
+"d": 13,
+"rank": 12,
+"color": "rojo",
+"name": "San Ponciano, papa y San Hipólito, presbítero, mártires,"
+},
+{
+"id": "maximilian_mary_raymund_kolbe_priest",
+"m": 8,
+"d": 14,
+"rank": 10,
+"color": "rojo",
+"name": "San Maximiliano María Kolbe, presbítero y mártir"
+},
+{
+"id": "assumption_of_the_blessed_virgin_mary",
+"m": 8,
+"d": 15,
+"rank": 3,
+"color": "blanco",
+"name": "La Asunción de la Santísima Virgen María"
+},
+{
+"id": "stephen_i_of_hungary",
+"m": 8,
+"d": 16,
+"rank": 12,
+"color": "blanco",
+"name": "San Esteban de Hungría"
+},
+{
+"id": "john_eudes_priest",
+"m": 8,
+"d": 19,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan Eudes, presbítero"
+},
+{
+"id": "ezequiel_moreno_bishop",
+"m": 8,
+"d": 19,
+"rank": 12,
+"color": "blanco",
+"name": "San Ezequiel Moreno, obispo"
+},
+{
+"id": "bernard_of_clairvaux_abbot",
+"m": 8,
+"d": 20,
+"rank": 10,
+"color": "blanco",
+"name": "San Bernardo, abad y doctor de la Iglesia"
+},
+{
+"id": "pius_x_pope",
+"m": 8,
+"d": 21,
+"rank": 10,
+"color": "blanco",
+"name": "San Pío X, papa"
+},
+{
+"id": "queenship_of_the_blessed_virgin_mary",
+"m": 8,
+"d": 22,
+"rank": 10,
+"color": "blanco",
+"name": "Santísima Virgen María, Reina del Cielo"
+},
+{
+"id": "rose_of_lima_virgin",
+"m": 8,
+"d": 23,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Rosa de Lima, virgen"
+},
+{
+"id": "bartholomew_apostle",
+"m": 8,
+"d": 24,
+"rank": 7,
+"color": "rojo",
+"name": "San Bartolomé, apóstol"
+},
+{
+"id": "louis_ix_of_france",
+"m": 8,
+"d": 25,
+"rank": 12,
+"color": "blanco",
+"name": "San Luis"
+},
+{
+"id": "joseph_of_calasanz_priest",
+"m": 8,
+"d": 25,
+"rank": 12,
+"color": "blanco",
+"name": "San José de Calasanz, presbítero"
+},
+{
+"id": "teresa_of_jesus_jornet_ibars_virgin",
+"m": 8,
+"d": 26,
+"rank": 11,
+"color": "blanco",
+"name": "Santa Teresa de Jesús Jornet e Ibars, virgen"
+},
+{
+"id": "monica_of_hippo",
+"m": 8,
+"d": 27,
+"rank": 10,
+"color": "blanco",
+"name": "Santa Mónica"
+},
+{
+"id": "augustine_of_hippo_bishop",
+"m": 8,
+"d": 28,
+"rank": 10,
+"color": "blanco",
+"name": "San Agustín de Hipona, obispo y doctor de la Iglesia"
+},
+{
+"id": "passion_of_saint_john_the_baptist",
+"m": 8,
+"d": 29,
+"rank": 10,
+"color": "rojo",
+"name": "Martirio de San Juan Bautista"
+},
+{
+"id": "gregory_i_the_great_pope",
+"m": 9,
+"d": 3,
+"rank": 10,
+"color": "blanco",
+"name": "San Gregorio Magno, papa y doctor de la Iglesia"
+},
+{
+"id": "teresa_of_calcutta_virgin",
+"m": 9,
+"d": 5,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Teresa de Calcuta, virgen"
+},
+{
+"id": "nativity_of_the_blessed_virgin_mary",
+"m": 9,
+"d": 8,
+"rank": 7,
+"color": "blanco",
+"name": "Natividad de la Bienaventurada Virgen María"
+},
+{
+"id": "peter_claver_priest",
+"m": 9,
+"d": 9,
+"rank": 12,
+"color": "blanco",
+"name": "San Pedro Claver, presbítero"
+},
+{
+"id": "most_holy_name_of_mary",
+"m": 9,
+"d": 12,
+"rank": 12,
+"color": "blanco",
+"name": "Santo Nombre de la Santísima Virgen María"
+},
+{
+"id": "john_chrysostom_bishop",
+"m": 9,
+"d": 13,
+"rank": 10,
+"color": "blanco",
+"name": "San Juan Crisóstomo, obispo y doctor de la Iglesia"
+},
+{
+"id": "exaltation_of_the_holy_cross",
+"m": 9,
+"d": 14,
+"rank": 5,
+"color": "rojo",
+"name": "Exaltación de la Santa Cruz"
+},
+{
+"id": "our_lady_of_sorrows",
+"m": 9,
+"d": 15,
+"rank": 10,
+"color": "blanco",
+"name": "Bienaventurada Virgen María de los dolores"
+},
+{
+"id": "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs",
+"m": 9,
+"d": 16,
+"rank": 10,
+"color": "rojo",
+"name": "San Cornelio, papa, y Cipriano, obispo, mártires"
+},
+{
+"id": "hildegard_of_bingen_abbess",
+"m": 9,
+"d": 17,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Hildegarda de Bingen, abadesa y doctora de la Iglesia"
+},
+{
+"id": "robert_bellarmine_bishop",
+"m": 9,
+"d": 17,
+"rank": 12,
+"color": "blanco",
+"name": "San Roberto Bearmino, obispo y doctor de la Iglesia"
+},
+{
+"id": "januarius_i_of_benevento_bishop",
+"m": 9,
+"d": 19,
+"rank": 12,
+"color": "rojo",
+"name": "San Jenaro, obispo y mártir"
+},
+{
+"id": "andrew_kim_tae_gon_priest_paul_chong_ha_sang_and_companions_martyrs",
+"m": 9,
+"d": 20,
+"rank": 10,
+"color": "rojo",
+"name": "Santos Andrés Kim Taegon, presbítero, Pablo Chong Hasang y compañeros, mártires"
+},
+{
+"id": "matthew_apostle",
+"m": 9,
+"d": 21,
+"rank": 7,
+"color": "rojo",
+"name": "San Mateo, apóstol y evangelista"
+},
+{
+"id": "pius_francesco_forgione_priest",
+"m": 9,
+"d": 23,
+"rank": 10,
+"color": "blanco",
+"name": "San Pío de Pietrelcina, presbítero"
+},
+{
+"id": "cosmas_of_cilicia_and_damian_of_cilicia_martyrs",
+"m": 9,
+"d": 26,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Cosme y Damián, mártires"
+},
+{
+"id": "vincent_de_paul_priest",
+"m": 9,
+"d": 27,
+"rank": 10,
+"color": "blanco",
+"name": "San Vicente de Paúl, presbítero"
+},
+{
+"id": "wenceslaus_i_of_bohemia_martyr",
+"m": 9,
+"d": 28,
+"rank": 12,
+"color": "rojo",
+"name": "San Wenceslao de Bohemia, mártir"
+},
+{
+"id": "lawrence_ruiz_and_companions_martyrs",
+"m": 9,
+"d": 28,
+"rank": 12,
+"color": "rojo",
+"name": "San Lorenzo Ruiz y Compañeros, mártires"
+},
+{
+"id": "michael_gabriel_and_raphael_archangels",
+"m": 9,
+"d": 29,
+"rank": 7,
+"color": "blanco",
+"name": "Santos Arcángeles Miguel, Gabriel y Rafael"
+},
+{
+"id": "jerome_of_stridon_priest",
+"m": 9,
+"d": 30,
+"rank": 10,
+"color": "blanco",
+"name": "San Jerónimo, presbítero y doctor de la Iglesia"
+},
+{
+"id": "therese_of_the_child_jesus_and_the_holy_face_of_lisieux_virgin",
+"m": 10,
+"d": 1,
+"rank": 10,
+"color": "blanco",
+"name": "Santa Teresita del Niño Jesús, virgen y doctora de la Iglesia"
+},
+{
+"id": "holy_guardian_angels",
+"m": 10,
+"d": 2,
+"rank": 10,
+"color": "blanco",
+"name": "Santos Ángeles Custodios"
+},
+{
+"id": "francis_borgia_priest",
+"m": 10,
+"d": 3,
+"rank": 12,
+"color": "blanco",
+"name": "San Francisco de Borja, presbítero"
+},
+{
+"id": "francis_of_assisi",
+"m": 10,
+"d": 4,
+"rank": 10,
+"color": "blanco",
+"name": "San Francisco de Asís"
+},
+{
+"id": "faustina_kowalska_virgin",
+"m": 10,
+"d": 5,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Faustina Kowalska, virgen"
+},
+{
+"id": "bruno_of_cologne_priest",
+"m": 10,
+"d": 6,
+"rank": 12,
+"color": "blanco",
+"name": "San Bruno, presbítero"
+},
+{
+"id": "our_lady_of_the_rosary",
+"m": 10,
+"d": 7,
+"rank": 10,
+"color": "blanco",
+"name": "Bienaventurada Virgen María del Rosario"
+},
+{
+"id": "denis_of_paris_bishop_and_companions_martyrs",
+"m": 10,
+"d": 9,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Dionisio, obispo, y compañeros, mártires"
+},
+{
+"id": "john_leonardi_priest",
+"m": 10,
+"d": 9,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan Leonardi, presbítero"
+},
+{
+"id": "john_henry_newman_priest",
+"m": 10,
+"d": 9,
+"rank": 12,
+"color": "blanco",
+"name": "San John Henry Newman, presbítero y doctor de la Iglesia"
+},
+{
+"id": "thomas_of_villanova_bishop",
+"m": 10,
+"d": 10,
+"rank": 12,
+"color": "blanco",
+"name": "Santo Tomás de Villanueva, obispo"
+},
+{
+"id": "john_xxiii_pope",
+"m": 10,
+"d": 11,
+"rank": 12,
+"color": "blanco",
+"name": "papa San Juan XXIII"
+},
+{
+"id": "mary_soledad_torres_acosta_virgin",
+"m": 10,
+"d": 11,
+"rank": 12,
+"color": "blanco",
+"name": "Santa María Soledad Torres Acosta, virgen"
+},
+{
+"id": "our_lady_of_the_pillar",
+"m": 10,
+"d": 12,
+"rank": 8,
+"color": "blanco",
+"name": "Nuestra Señora del Pilar"
+},
+{
+"id": "callistus_i_pope",
+"m": 10,
+"d": 14,
+"rank": 12,
+"color": "rojo",
+"name": "San Calixto I, papa y mártir"
+},
+{
+"id": "teresa_of_jesus_of_avila_virgin",
+"m": 10,
+"d": 15,
+"rank": 8,
+"color": "blanco",
+"name": "Santa Teresa de Jesús, virgen y doctora de la Iglesia"
+},
+{
+"id": "hedwig_of_silesia_religious",
+"m": 10,
+"d": 16,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Eduviges, religiosa"
+},
+{
+"id": "margaret_mary_alacoque_virgin",
+"m": 10,
+"d": 16,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Margarita María de Alacoque"
+},
+{
+"id": "ignatius_of_antioch_bishop",
+"m": 10,
+"d": 17,
+"rank": 10,
+"color": "rojo",
+"name": "San Ignacio de Antioquía, obispo y mártir"
+},
+{
+"id": "luke_evangelist",
+"m": 10,
+"d": 18,
+"rank": 7,
+"color": "rojo",
+"name": "San Lucas, evangelista"
+},
+{
+"id": "john_de_brebeuf_isaac_jogues_priests_and_companions_martyrs",
+"m": 10,
+"d": 19,
+"rank": 12,
+"color": "rojo",
+"name": "Santos Juan de Brébeuf e Isaac Jogues, presbíteros, y compañeros, mártires"
+},
+{
+"id": "paul_of_the_cross_priest",
+"m": 10,
+"d": 19,
+"rank": 12,
+"color": "blanco",
+"name": "San Pablo de la Cruz, presbítero"
+},
+{
+"id": "peter_of_alcantara_priest",
+"m": 10,
+"d": 19,
+"rank": 12,
+"color": "blanco",
+"name": "San Pedro de Alcántara, presbítero"
+},
+{
+"id": "john_paul_ii_pope",
+"m": 10,
+"d": 22,
+"rank": 12,
+"color": "blanco",
+"name": "papa San Juan Pablo II"
+},
+{
+"id": "john_of_capistrano_priest",
+"m": 10,
+"d": 23,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan de Capistrano, presbítero"
+},
+{
+"id": "anthony_mary_claret_bishop",
+"m": 10,
+"d": 24,
+"rank": 12,
+"color": "blanco",
+"name": "San Antonio María Claret, obispo"
+},
+{
+"id": "simon_and_jude_apostles",
+"m": 10,
+"d": 28,
+"rank": 7,
+"color": "rojo",
+"name": "Santos Simón y Judas, apóstoles"
+},
+{
+"id": "all_saints",
+"m": 11,
+"d": 1,
+"rank": 3,
+"color": "blanco",
+"name": "Todos los Santos"
+},
+{
+"id": "commemoration_of_all_the_faithful_departed",
+"m": 11,
+"d": 2,
+"rank": 3,
+"color": "morado",
+"name": "Conmemoración de todos los fieles difuntos"
+},
+{
+"id": "all_souls",
+"m": 11,
+"d": 2,
+"rank": 3,
+"color": "morado",
+"name": "Conmemoración de todos los fieles difuntos"
+},
+{
+"id": "martin_de_porres_religious",
+"m": 11,
+"d": 3,
+"rank": 12,
+"color": "blanco",
+"name": "San Martín de Porres, religioso"
+},
+{
+"id": "charles_borromeo_bishop",
+"m": 11,
+"d": 4,
+"rank": 10,
+"color": "blanco",
+"name": "San Carlos Borromeo, obispo"
+},
+{
+"id": "peter_poveda_and_innocent_of_mary_immaculate_canoura_priests_and_companions_martyrs",
+"m": 11,
+"d": 6,
+"rank": 10,
+"color": "rojo",
+"name": "Santos Pedro Poveda Castroverde e Inocencio de la Inmaculada Canoura Arnau, presbíteros, y compañeros, mártires"
+},
+{
+"id": "dedication_of_the_lateran_basilica",
+"m": 11,
+"d": 9,
+"rank": 5,
+"color": "blanco",
+"name": "Dedicación de la basílica de Letrán"
+},
+{
+"id": "leo_i_the_great_pope",
+"m": 11,
+"d": 10,
+"rank": 10,
+"color": "blanco",
+"name": "San León Magno, papa y doctor de la Iglesia"
+},
+{
+"id": "martin_of_tours_bishop",
+"m": 11,
+"d": 11,
+"rank": 10,
+"color": "blanco",
+"name": "San Martín de Tours, obispo"
+},
+{
+"id": "josaphat_kuntsevych_bishop",
+"m": 11,
+"d": 12,
+"rank": 10,
+"color": "rojo",
+"name": "San Josafat Kuncewicz, obispo y mártir"
+},
+{
+"id": "leander_of_seville_bishop",
+"m": 11,
+"d": 13,
+"rank": 12,
+"color": "blanco",
+"name": "San Leandro de Sevilla, obispo"
+},
+{
+"id": "albert_the_great_bishop",
+"m": 11,
+"d": 15,
+"rank": 12,
+"color": "blanco",
+"name": "San Alberto Magno, obispo y doctor de la Iglesia"
+},
+{
+"id": "margaret_of_scotland",
+"m": 11,
+"d": 16,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Margarita de Escocia"
+},
+{
+"id": "gertrude_the_great_virgin",
+"m": 11,
+"d": 16,
+"rank": 12,
+"color": "blanco",
+"name": "Santa Gertrudis la Grande, virgen"
+},
+{
+"id": "elizabeth_of_hungary_religious",
+"m": 11,
+"d": 17,
+"rank": 10,
+"color": "blanco",
+"name": "Santa Isabel de Hungría, religiosa"
+},
+{
+"id": "dedication_of_the_basilicas_of_saints_peter_and_paul_apostles",
+"m": 11,
+"d": 18,
+"rank": 12,
+"color": "blanco",
+"name": "Dedicación de las Basílicas de San Pedro y San Pablo, apóstoles"
+},
+{
+"id": "presentation_of_the_blessed_virgin_mary",
+"m": 11,
+"d": 21,
+"rank": 10,
+"color": "blanco",
+"name": "Presentación de la Santísima Virgen María"
+},
+{
+"id": "cecilia_of_rome_virgin",
+"m": 11,
+"d": 22,
+"rank": 10,
+"color": "rojo",
+"name": "Santa Cecilia, virgen y mártir"
+},
+{
+"id": "clement_i_pope",
+"m": 11,
+"d": 23,
+"rank": 12,
+"color": "rojo",
+"name": "San Clemente I, papa y mártir"
+},
+{
+"id": "columban_of_luxeuil_abbot",
+"m": 11,
+"d": 23,
+"rank": 12,
+"color": "blanco",
+"name": "San Columbano, Abad"
+},
+{
+"id": "andrew_dung_lac_priest_and_companions_martyrs",
+"m": 11,
+"d": 24,
+"rank": 10,
+"color": "rojo",
+"name": "Santos Andrés Dung-Lac, presbítero, y compañeros, mártires"
+},
+{
+"id": "catherine_of_alexandria_virgin",
+"m": 11,
+"d": 25,
+"rank": 12,
+"color": "rojo",
+"name": "Santa Catalina de Alexandria, virgen y mártir"
+},
+{
+"id": "andrew_apostle",
+"m": 11,
+"d": 30,
+"rank": 7,
+"color": "rojo",
+"name": "San Andrés, apóstol"
+},
+{
+"id": "francis_xavier_priest",
+"m": 12,
+"d": 3,
+"rank": 10,
+"color": "blanco",
+"name": "San Francisco Javier, presbítero"
+},
+{
+"id": "john_damascene_priest",
+"m": 12,
+"d": 4,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan Damasceno, presbítero y doctor de la Iglesia"
+},
+{
+"id": "nicholas_of_myra_bishop",
+"m": 12,
+"d": 6,
+"rank": 12,
+"color": "blanco",
+"name": "San Nicolás, obispo"
+},
+{
+"id": "ambrose_of_milan_bishop",
+"m": 12,
+"d": 7,
+"rank": 10,
+"color": "blanco",
+"name": "San Ambrosio, obispo y doctor de la Iglesia"
+},
+{
+"id": "immaculate_conception_of_the_blessed_virgin_mary",
+"m": 12,
+"d": 8,
+"rank": 3,
+"color": "blanco",
+"name": "Inmaculada Concepción de María"
+},
+{
+"id": "juan_diego_cuauhtlatoatzin",
+"m": 12,
+"d": 9,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan Diego Cuauhtlatoatzin"
+},
+{
+"id": "our_lady_of_loreto",
+"m": 12,
+"d": 10,
+"rank": 12,
+"color": "blanco",
+"name": "Nuestra Señora de Loreto"
+},
+{
+"id": "eulalia_of_merida_virgin",
+"m": 12,
+"d": 10,
+"rank": 12,
+"color": "rojo",
+"name": "Santa Eulalia de Mérida, virgen y mártir"
+},
+{
+"id": "damasus_i_pope",
+"m": 12,
+"d": 11,
+"rank": 12,
+"color": "blanco",
+"name": "San Dámaso I, papa"
+},
+{
+"id": "our_lady_of_guadalupe",
+"m": 12,
+"d": 12,
+"rank": 12,
+"color": "blanco",
+"name": "Nuestra Señora de Guadalupe"
+},
+{
+"id": "lucy_of_syracuse_virgin",
+"m": 12,
+"d": 13,
+"rank": 10,
+"color": "rojo",
+"name": "Santa Lucía, virgen y mártir"
+},
+{
+"id": "john_of_the_cross_priest",
+"m": 12,
+"d": 14,
+"rank": 11,
+"color": "blanco",
+"name": "San Juan de la Cruz, presbítero y doctor de la Iglesia"
+},
+{
+"id": "peter_canisius_priest",
+"m": 12,
+"d": 21,
+"rank": 12,
+"color": "blanco",
+"name": "San Pedro Canisio, presbítero y doctor de la Iglesia"
+},
+{
+"id": "john_of_kanty_priest",
+"m": 12,
+"d": 23,
+"rank": 12,
+"color": "blanco",
+"name": "San Juan Kety, presbítero"
+},
+{
+"id": "stephen_the_first_martyr",
+"m": 12,
+"d": 26,
+"rank": 7,
+"color": "rojo",
+"name": "San Esteban, Primer mártir"
+},
+{
+"id": "john_apostle",
+"m": 12,
+"d": 27,
+"rank": 7,
+"color": "blanco",
+"name": "San Juan, apóstol y evangelista"
+},
+{
+"id": "holy_innocents_martyrs",
+"m": 12,
+"d": 28,
+"rank": 7,
+"color": "rojo",
+"name": "Santos Inocentes, mártires"
+},
+{
+"id": "thomas_becket_bishop",
+"m": 12,
+"d": 29,
+"rank": 12,
+"color": "rojo",
+"name": "San Tomás Becket, obispo y mártir"
+},
+{
+"id": "sylvester_i_pope",
+"m": 12,
+"d": 31,
+"rank": 12,
+"color": "blanco",
+"name": "San Silvestre I, papa"
+}
+]
